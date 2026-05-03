@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- إعدادات تطبيق الويب PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#4f46e5">
@@ -11,6 +11,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>نظام تسجيل الغياب الذكي - النسخة التحليلية</title>
     <style>
+        * {
+            -webkit-text-size-adjust: none !important;
+            text-size-adjust: none !important;
+            max-height: 999999px; /* Disable Android WebView Font Boosting */
+        }
         /* From Uiverse.io by ammarsaa */
         .form {
             display: flex;
