@@ -224,6 +224,7 @@
             padding: 10px;
             border-radius: 12px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            display: none;
         }
 
         #checkbox {
@@ -355,7 +356,7 @@
                 box-sizing: border-box !important;
             }
             body {
-                zoom: 0.8; /* يمكنك تجربة تصغير الموقع يدوياً من هنا */
+                zoom: 0.65; /* يمكنك تجربة تصغير الموقع يدوياً من هنا */
             }
             .container {
                 padding: 20px 20px 120px 20px;
@@ -1003,7 +1004,7 @@
             z-index: 10000;
             overflow: hidden;
             border: 1px solid #e2e8f0;
-            display: flex;
+            display: none;
             flex-direction: column;
             transition: 0.3s;
         }
@@ -2414,6 +2415,8 @@
                 // الانتقال لشاشة الترحيب الخاصة بالمعلمين المسجلين مسبقاً
                 document.getElementById("login").style.display = "none";
                 document.getElementById("returningTeacherWelcome").style.display = "block";
+                document.querySelector(".menu-container").style.display = "block";
+                if(document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
                 checkCompleteDataStatus();
                 document.getElementById("returningWelcomeMsg").textContent = "مرحباً أ/ " + loggedInTeacherName;
 
@@ -2445,6 +2448,8 @@
 
                 document.getElementById("login").style.display = "none";
                 document.getElementById("returningTeacherWelcome").style.display = "block";
+                document.querySelector(".menu-container").style.display = "block";
+                if(document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
                 checkCompleteDataStatus();
                 document.getElementById("returningWelcomeMsg").textContent = "مرحباً أ/ " + loggedInTeacherName;
                 
@@ -2497,6 +2502,8 @@
 
                 document.getElementById("login").style.display = "none";
                 document.getElementById("returningTeacherWelcome").style.display = "block";
+                document.querySelector(".menu-container").style.display = "block";
+                if(document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
                 checkCompleteDataStatus();
                 document.getElementById("returningWelcomeMsg").textContent = "مرحباً أ/ " + loggedInTeacherName;
                 
@@ -2529,6 +2536,8 @@
             // إخفاء شاشة تسجيل الدخول والانتقال لشاشة إكمال بيانات المعلم
             document.getElementById("login").style.display = "none";
             document.getElementById("teacherInfoSetup").style.display = "block";
+            document.querySelector(".menu-container").style.display = "block";
+            if(document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
         }
 
         // دالة للمتابعة من شاشة الترحيب إلى شاشة إعداد الحصة
@@ -2545,6 +2554,8 @@
             document.getElementById("returningTeacherWelcome").style.display = "none";
             document.getElementById("setup").style.display = "none";
             document.getElementById("logoutSetup").style.display = "block";
+            document.querySelector(".menu-container").style.display = "none";
+            if(document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "none";
 
             // تعبئة البيانات
             document.getElementById("logoutName").value = loggedInTeacherName;
@@ -2556,6 +2567,8 @@
         function cancelLogout() {
             document.getElementById("logoutSetup").style.display = "none";
             document.getElementById("returningTeacherWelcome").style.display = "block";
+            document.querySelector(".menu-container").style.display = "block";
+            if(document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
         }
 
         document.getElementById("sendLogoutReasonBtn").onclick = () => {
