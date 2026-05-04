@@ -1456,9 +1456,7 @@
     <div class="side-menu" id="sideMenu">
         <div class="menu-item" onclick="location.reload()">🔄 تحديث الصفحة</div>
         <div class="menu-item" id="installPwaBtn" style="display:none; background:#dbeafe; color:#1e40af;">📱 تثبيت التطبيق</div>
-        <a href="app.apk" download style="text-decoration:none; display:block;">
-            <div class="menu-item" style="background:#d1fae5; color:#065f46;">📥 تحميل تطبيق الأندرويد</div>
-        </a>
+        <div class="menu-item" style="background:#d1fae5; color:#065f46;" onclick="openAndroidDownloadModal()">📥 تحميل تطبيق الأندرويد</div>
         <div class="menu-item" onclick="openTeacherAbsenceRecord()" style="background:#f0fdf4; color:#166534;">📝 سجل
             غياب المعلم وتعديله</div>
         <div class="menu-item"
@@ -3534,6 +3532,34 @@
                         console.log('ServiceWorker registration failed: ', err);
                     });
             });
+        }
+    </script>
+    <!-- نافذة تحميل تطبيق الأندرويد -->
+    <div id="androidDownloadModal" class="overlay" style="display:none; z-index: 10005;">
+        <div class="modal-card smooth-appear">
+            <h3>📱 تطبيق الأندرويد</h3>
+            <p style="font-size: 1.1rem; line-height: 1.6; color: #475569; margin-bottom: 20px;">
+                هذا تطبيق تسجيل الغياب الذكي الخاص بأجهزة الأندرويد. قم بالضغط على زر التحميل لتنزيله.
+            </p>
+            <a href="my%20app.apk" download style="text-decoration:none;">
+                <div class="submit" style="margin: 0 auto; display: flex; justify-content: center; text-align: center; margin-bottom: 15px;" data-text="تحميل التطبيق الآن">
+                    تحميل التطبيق الآن
+                </div>
+            </a>
+            <div class="btn-normal" onclick="closeAndroidDownloadModal()" style="margin-top: 15px;">إلغاء</div>
+        </div>
+    </div>
+
+    <script>
+        function openAndroidDownloadModal() {
+            document.getElementById("androidDownloadModal").style.display = "flex";
+            if (typeof forceCloseMenu === 'function') {
+                forceCloseMenu();
+            }
+        }
+
+        function closeAndroidDownloadModal() {
+            document.getElementById("androidDownloadModal").style.display = "none";
         }
     </script>
 </body>
