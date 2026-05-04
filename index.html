@@ -16,6 +16,13 @@
             text-size-adjust: none !important;
             max-height: 999999px; /* Disable Android WebView Font Boosting */
         }
+        
+        html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
         /* From Uiverse.io by ammarsaa */
         .form {
             display: flex;
@@ -343,6 +350,13 @@
         }
 
         @media (max-width: 600px) {
+            * {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            body {
+                zoom: 0.8; /* يمكنك تجربة تصغير الموقع يدوياً من هنا */
+            }
             .container {
                 padding: 20px 20px 120px 20px;
                 border-radius: 20px;
