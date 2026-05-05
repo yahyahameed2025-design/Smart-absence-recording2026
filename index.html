@@ -14,15 +14,18 @@
         * {
             -webkit-text-size-adjust: none !important;
             text-size-adjust: none !important;
-            max-height: 999999px; /* Disable Android WebView Font Boosting */
+            max-height: 999999px;
+            /* Disable Android WebView Font Boosting */
         }
-        
-        html, body {
+
+        html,
+        body {
             width: 100%;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
         }
+
         /* From Uiverse.io by ammarsaa */
         .form {
             display: flex;
@@ -76,7 +79,8 @@
 
         .message,
         .signin {
-            font-size: 1.05rem; /* Enhanced text clarity */
+            font-size: 1.05rem;
+            /* Enhanced text clarity */
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.6;
         }
@@ -112,7 +116,8 @@
             border: 1px solid rgba(105, 105, 105, 0.397);
             border-radius: 10px;
             box-sizing: border-box;
-            font-size: 1.05rem; /* Increased for better legibility */
+            font-size: 1.05rem;
+            /* Increased for better legibility */
             font-weight: 500;
         }
 
@@ -178,7 +183,8 @@
             --glass: rgba(255, 255, 255, 0.85);
         }
 
-        html, body {
+        html,
+        body {
             overflow-x: hidden !important;
             max-width: 100vw;
             width: 100%;
@@ -194,7 +200,8 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Modified to allow safe scrolling on long content */
+            align-items: flex-start;
+            /* Modified to allow safe scrolling on long content */
             padding: 20px 20px 120px 20px;
             box-sizing: border-box;
             color: #1f2937;
@@ -327,10 +334,17 @@
 
         /* --- Animations --- */
         @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(20px) scale(0.98); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
-        
+
         .smooth-appear {
             animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
@@ -341,7 +355,8 @@
             -webkit-backdrop-filter: blur(20px);
             width: 100%;
             max-width: 900px;
-            margin: 90px auto 20px auto; /* Added top margin to prevent overlapping with top buttons */
+            margin: 90px auto 20px auto;
+            /* Added top margin to prevent overlapping with top buttons */
             padding: 40px;
             border-radius: 30px;
             box-sizing: border-box;
@@ -355,20 +370,25 @@
                 max-width: 100% !important;
                 box-sizing: border-box !important;
             }
+
             body {
-                zoom: 0.65; /* يمكنك تجربة تصغير الموقع يدوياً من هنا */
+                zoom: 0.65;
+                /* يمكنك تجربة تصغير الموقع يدوياً من هنا */
             }
+
             .container {
                 padding: 20px 20px 120px 20px;
                 border-radius: 20px;
                 margin-top: 100px !important;
             }
+
             .grid {
                 grid-template-columns: 1fr !important;
                 display: flex !important;
                 flex-direction: column !important;
                 width: 100%;
             }
+
             .card {
                 width: 100%;
                 box-sizing: border-box;
@@ -414,7 +434,7 @@
             box-shadow: 0 15px 25px -5px rgba(79, 70, 229, 0.15);
             border-color: var(--primary);
         }
-        
+
         .card:active {
             transform: scale(0.96);
         }
@@ -485,8 +505,11 @@
         .submit::before {
             content: "";
             position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: 0.5s;
         }
 
@@ -494,7 +517,7 @@
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 15px 25px -5px rgba(79, 70, 229, 0.6);
         }
-        
+
         .submit:hover::before {
             left: 100%;
         }
@@ -896,6 +919,7 @@
             body {
                 padding: 0;
             }
+
             .container {
                 padding: 20px;
                 border-radius: 0;
@@ -904,72 +928,93 @@
                 min-height: 100vh;
                 border: none;
             }
+
             .form {
                 max-width: 100%;
                 width: 100%;
                 padding: 15px;
             }
+
             .grid {
                 grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
                 gap: 10px;
             }
+
             .card {
                 padding: 15px;
-                font-size: 1.05rem !important; /* Enhanced readability on mobile */
+                font-size: 1.05rem !important;
+                /* Enhanced readability on mobile */
             }
+
             .stats-summary {
                 grid-template-columns: 1fr;
             }
-            .stats-table th, .stats-table td {
+
+            .stats-table th,
+            .stats-table td {
                 padding: 10px;
                 font-size: 1rem;
             }
+
             .modal-card {
                 width: 90%;
                 padding: 20px;
             }
+
             .side-menu {
                 width: 250px;
                 right: -250px;
                 padding: 80px 15px 20px;
             }
+
             .menu-container {
                 top: 15px;
                 right: 15px;
                 padding: 8px;
             }
+
             .toggle {
                 width: 30px;
                 height: 30px;
             }
+
             h2 {
                 font-size: 1.75rem !important;
             }
+
             h3 {
                 font-size: 1.5rem !important;
             }
+
             .code-inputs input {
                 width: 45px;
                 height: 50px;
                 font-size: 20px;
                 gap: 8px;
             }
+
             .submit {
                 width: 100%;
                 max-width: 250px;
             }
+
             .stats-table {
                 font-size: 13px;
             }
-            #teacherFullName, #teacherSubject {
+
+            #teacherFullName,
+            #teacherSubject {
                 font-size: 14px;
                 padding: 10px;
             }
+
             /* تصغير حجم اللودر على الشاشات الصغيرة */
             .loader {
                 width: 12rem;
             }
-            .flappyBirdScene, .flappyBirdSceneBottom {
+
+            .flappyBirdScene,
+            .flappyBirdSceneBottom {
                 width: 15rem;
             }
         }
@@ -978,20 +1023,24 @@
             .grid {
                 grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
             }
+
             .glass-radio-group {
                 flex-direction: column;
                 width: 100%;
             }
+
             .card {
                 font-size: 13px;
                 padding: 12px;
             }
-            .stats-table th, .stats-table td {
+
+            .stats-table th,
+            .stats-table td {
                 padding: 5px;
                 font-size: 12px;
             }
         }
-        
+
         /* تنسيقات المحادثة */
         .chat-widget {
             position: fixed;
@@ -1000,7 +1049,7 @@
             width: 320px;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             z-index: 10000;
             overflow: hidden;
             border: 1px solid #e2e8f0;
@@ -1008,6 +1057,7 @@
             flex-direction: column;
             transition: 0.3s;
         }
+
         @media (max-width: 768px) {
             .chat-widget {
                 width: calc(100% - 40px);
@@ -1015,6 +1065,7 @@
                 right: 20px;
             }
         }
+
         .chat-header {
             background: var(--primary, #4f46e5);
             color: white;
@@ -1025,12 +1076,14 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .chat-body {
             display: none;
             flex-direction: column;
             height: 350px;
             background: #f8fafc;
         }
+
         .chat-messages {
             flex: 1;
             padding: 15px;
@@ -1039,6 +1092,7 @@
             flex-direction: column;
             gap: 10px;
         }
+
         .chat-message {
             max-width: 80%;
             padding: 10px 15px;
@@ -1046,12 +1100,14 @@
             font-size: 14px;
             word-wrap: break-word;
         }
+
         .msg-mine {
             background: var(--primary, #4f46e5);
             color: white;
             align-self: flex-start;
             border-bottom-right-radius: 0;
         }
+
         .msg-other {
             background: white;
             color: #1e293b;
@@ -1059,18 +1115,21 @@
             align-self: flex-end;
             border-bottom-left-radius: 0;
         }
+
         .msg-sender {
             font-size: 11px;
             margin-bottom: 4px;
             opacity: 0.8;
             font-weight: bold;
         }
+
         .chat-input-area {
             display: flex;
             padding: 10px;
             background: white;
             border-top: 1px solid #e2e8f0;
         }
+
         .chat-input-area input {
             flex: 1;
             padding: 10px;
@@ -1079,6 +1138,7 @@
             outline: none;
             font-family: inherit;
         }
+
         .chat-input-area button {
             background: var(--primary, #4f46e5);
             color: white;
@@ -1089,10 +1149,12 @@
             cursor: pointer;
             font-weight: bold;
         }
+
         .chat-msg-actions span:hover {
             opacity: 1 !important;
             text-decoration: underline;
         }
+
         .unread-badge {
             background: #ef4444;
             color: white;
@@ -1101,103 +1163,127 @@
             border-radius: 10px;
             font-weight: bold;
         }
+
         /* تأثيرات التحويم لزر اختيار الجهاز */
         .device-btn {
-            background: #555; 
-            color: white; 
-            border-radius: 15px; 
-            padding: 15px; 
-            font-weight: bold; 
+            background: #555;
+            color: white;
+            border-radius: 15px;
+            padding: 15px;
+            font-weight: bold;
             transition: 0.3s;
             cursor: pointer;
             text-align: center;
         }
+
         .device-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* تخصيصات الأجهزة المختلفة */
         body.device-ios {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
+
         body.device-ios .container {
-            border-radius: 40px; /* زوايا اكثر استدارة لتناسب لغة تصميم ابل */
+            border-radius: 40px;
+            /* زوايا اكثر استدارة لتناسب لغة تصميم ابل */
             background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
-        body.device-ios .btn-normal, body.device-ios .submit {
+
+        body.device-ios .btn-normal,
+        body.device-ios .submit {
             border-radius: 20px;
         }
-        
+
         body.device-android {
             font-family: Roboto, sans-serif;
         }
+
         body.device-android .container {
             border-radius: 24px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
-        body.device-android .submit, body.device-android .btn-normal {
+
+        body.device-android .submit,
+        body.device-android .btn-normal {
             border-radius: 12px;
         }
-        
+
         body.device-windows {
             font-family: "Segoe UI", sans-serif;
         }
+
         body.device-windows .container {
-            border-radius: 8px; /* تصميم Fluent/Metro */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            /* تصميم Fluent/Metro */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        body.device-windows .submit, body.device-windows .btn-normal {
-            border-radius: 4px; /* زوايا حادة اكثر */
+
+        body.device-windows .submit,
+        body.device-windows .btn-normal {
+            border-radius: 4px;
+            /* زوايا حادة اكثر */
         }
-        
+
         body.device-mac {
             font-family: "San Francisco", -apple-system, BlinkMacSystemFont, sans-serif;
         }
+
         body.device-mac .container {
             border-radius: 16px;
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
         }
-        body.device-mac .submit, body.device-mac .btn-normal {
+
+        body.device-mac .submit,
+        body.device-mac .btn-normal {
             border-radius: 8px;
         }
     </style>
 
     <!-- Google Fonts: Tajawal -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet">
+
     <!-- 360 Degree Redesign: Dark Glassmorphism -->
     <style id="dark-glass-override">
         /* Core Dark Variables */
         :root {
             --bg-dark: #0f172a;
             --bg-darker: #020617;
-            --text-main: #ffffff; /* Brighter for peak contrast */
-            --text-muted: #e2e8f0; /* Crisp color for readable secondary text */
+            --text-main: #ffffff;
+            /* Brighter for peak contrast */
+            --text-muted: #e2e8f0;
+            /* Crisp color for readable secondary text */
             --glass-bg: rgba(15, 23, 42, 0.75);
-            --glass-border: rgba(255, 255, 255, 0.15); /* Sharper border definition */
+            --glass-border: rgba(255, 255, 255, 0.15);
+            /* Sharper border definition */
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
-            
+
             /* Themes Redefined */
-            --primary: #00f2fe; /* default neon cyan */
+            --primary: #00f2fe;
+            /* default neon cyan */
             --secondary: #4facfe;
         }
-        
+
         body.theme-silver {
             --primary: #cbd5e1;
             --secondary: #94a3b8;
             background: radial-gradient(circle at top left, #1e293b, #020617) !important;
         }
+
         body.theme-gold {
             --primary: #fbbf24;
             --secondary: #d97706;
             background: radial-gradient(circle at top right, #382c0b, #020617) !important;
         }
+
         body.theme-platinum {
             --primary: #00f2fe;
             --secondary: #4facfe;
@@ -1206,7 +1292,8 @@
 
         body {
             font-family: 'Tajawal', sans-serif !important;
-            background: radial-gradient(circle at center, #0b253b, #020617) !important; /* Default dark */
+            background: radial-gradient(circle at center, #0b253b, #020617) !important;
+            /* Default dark */
             color: var(--text-main) !important;
         }
 
@@ -1218,32 +1305,49 @@
             border-radius: 24px !important;
         }
 
-        h2, h3, .form-title {
+        h2,
+        h3,
+        .form-title {
             color: var(--text-main) !important;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             font-family: 'Tajawal', sans-serif !important;
         }
-        
+
         /* Modals and Forms */
         .form {
             background-color: rgba(2, 6, 23, 0.5) !important;
             border: 1px solid var(--glass-border) !important;
             backdrop-filter: blur(10px) !important;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
         }
-        .form label .input, .code-inputs input, select, input[type="text"], input[type="password"], input[type="email"], textarea {
+
+        .form label .input,
+        .code-inputs input,
+        select,
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        textarea {
             background-color: rgba(15, 23, 42, 0.6) !important;
             border: 1px solid rgba(255, 255, 255, 0.15) !important;
             color: var(--text-main) !important;
             font-family: 'Tajawal', sans-serif !important;
-            font-size: 1.05rem !important; /* Uniform distinct sizing for all controls */
+            font-size: 1.05rem !important;
+            /* Uniform distinct sizing for all controls */
         }
-        .form label .input:focus, .code-inputs input:focus, select:focus, input:focus, textarea:focus {
+
+        .form label .input:focus,
+        .code-inputs input:focus,
+        select:focus,
+        input:focus,
+        textarea:focus {
             border-color: var(--primary) !important;
             box-shadow: 0 0 10px rgba(0, 242, 254, 0.2) !important;
             outline: none;
         }
-        .form label .input:focus+span, .form label .input:valid+span {
+
+        .form label .input:focus+span,
+        .form label .input:valid+span {
             color: var(--primary) !important;
         }
 
@@ -1254,27 +1358,33 @@
             color: var(--text-main) !important;
             backdrop-filter: blur(8px) !important;
             font-family: 'Tajawal', sans-serif !important;
-            font-size: 1.1rem !important; /* Extra visible text on cards */
+            font-size: 1.1rem !important;
+            /* Extra visible text on cards */
             font-weight: 700 !important;
         }
+
         .card:hover {
             border-color: var(--primary) !important;
             background: rgba(30, 41, 59, 0.8) !important;
             box-shadow: 0 5px 20px rgba(0, 242, 254, 0.15) !important;
         }
+
         .card.selected {
             background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
-            color: #020617 !important; 
+            color: #020617 !important;
             border: none !important;
             box-shadow: 0 5px 25px rgba(0, 242, 254, 0.4) !important;
             font-weight: 800 !important;
         }
+
         .completed {
-            background: rgba(59, 7, 100, 0.6) !important; /* Dark Purple for Completed */
+            background: rgba(59, 7, 100, 0.6) !important;
+            /* Dark Purple for Completed */
             border-color: #6b21a8 !important;
             color: #d8b4fe !important;
             opacity: 0.9 !important;
         }
+
         .completed::after {
             background: #7e22ce !important;
         }
@@ -1282,21 +1392,29 @@
         /* Buttons Update */
         .submit {
             background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
-            color: transparent !important; /* Custom trick used in original code */
+            color: transparent !important;
+            /* Custom trick used in original code */
             box-shadow: 0 8px 20px rgba(0, 242, 254, 0.3) !important;
             font-family: 'Tajawal', sans-serif !important;
         }
-        .submit::after { color: #020617 !important; font-weight: 800 !important; }
+
+        .submit::after {
+            color: #020617 !important;
+            font-weight: 800 !important;
+        }
+
         .submit:hover {
             box-shadow: 0 10px 30px rgba(0, 242, 254, 0.5) !important;
             transform: translateY(-3px) scale(1.02) !important;
         }
+
         .btn-normal {
             background: rgba(30, 41, 59, 0.6) !important;
             color: var(--text-main) !important;
             border: 1px solid var(--glass-border) !important;
             font-family: 'Tajawal', sans-serif !important;
         }
+
         .btn-normal:hover {
             background: rgba(51, 65, 85, 0.8) !important;
             border-color: var(--primary) !important;
@@ -1309,12 +1427,14 @@
             backdrop-filter: blur(25px) !important;
             border-left: 1px solid var(--glass-border) !important;
         }
+
         .menu-item {
             background: rgba(30, 41, 59, 0.5) !important;
             border: 1px solid var(--glass-border) !important;
             color: var(--text-main) !important;
             font-family: 'Tajawal', sans-serif !important;
         }
+
         .menu-item:hover {
             background: rgba(51, 65, 85, 0.8) !important;
             border-color: var(--primary) !important;
@@ -1323,14 +1443,16 @@
         }
 
         /* Modals and Overlays */
-        .overlay, .loading-overlay {
+        .overlay,
+        .loading-overlay {
             background: rgba(2, 6, 23, 0.85) !important;
             backdrop-filter: blur(12px) !important;
         }
+
         .modal-card {
             background: var(--glass-bg) !important;
             border: 1px solid var(--glass-border) !important;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
         }
 
         /* Chat Widget Update */
@@ -1339,61 +1461,128 @@
             border: 1px solid var(--glass-border) !important;
             backdrop-filter: blur(16px) !important;
         }
+
         .chat-header {
             background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
             color: #020617 !important;
             font-family: 'Tajawal', sans-serif !important;
         }
-        .chat-body { background: rgba(15, 23, 42, 0.6) !important; }
-        .msg-mine { background: linear-gradient(135deg, var(--primary), var(--secondary)) !important; color: #020617 !important; }
-        .msg-other { background: rgba(30, 41, 59, 0.8) !important; color: var(--text-main) !important; border: 1px solid var(--glass-border) !important; }
-        .chat-input-area { background: rgba(15, 23, 42, 0.8) !important; border-top: 1px solid var(--glass-border) !important; }
-        .chat-input-area button { background: linear-gradient(135deg, var(--primary), var(--secondary)) !important; color: #020617 !important; border: none !important; font-family: 'Tajawal', sans-serif !important;}
+
+        .chat-body {
+            background: rgba(15, 23, 42, 0.6) !important;
+        }
+
+        .msg-mine {
+            background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+            color: #020617 !important;
+        }
+
+        .msg-other {
+            background: rgba(30, 41, 59, 0.8) !important;
+            color: var(--text-main) !important;
+            border: 1px solid var(--glass-border) !important;
+        }
+
+        .chat-input-area {
+            background: rgba(15, 23, 42, 0.8) !important;
+            border-top: 1px solid var(--glass-border) !important;
+        }
+
+        .chat-input-area button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+            color: #020617 !important;
+            border: none !important;
+            font-family: 'Tajawal', sans-serif !important;
+        }
 
         /* General Adjustments */
-        p, label { color: var(--text-muted) !important; font-size: 1.1rem !important; font-weight: 500 !important; line-height: 1.6; }
-        .stat-card, .stats-table { background: rgba(30, 41, 59, 0.4) !important; border-color: var(--glass-border) !important; }
-        .stat-number { color: var(--primary) !important; text-shadow: 0 0 15px rgba(0, 242, 254, 0.2); }
-        .stats-table th { background: rgba(15, 23, 42, 0.8) !important; color: var(--text-main) !important; border-bottom: 1px solid var(--glass-border); }
-        .stats-table td { border-top-color: rgba(255, 255, 255, 0.05) !important; color: var(--text-main) !important; }
+        p,
+        label {
+            color: var(--text-muted) !important;
+            font-size: 1.1rem !important;
+            font-weight: 500 !important;
+            line-height: 1.6;
+        }
+
+        .stat-card,
+        .stats-table {
+            background: rgba(30, 41, 59, 0.4) !important;
+            border-color: var(--glass-border) !important;
+        }
+
+        .stat-number {
+            color: var(--primary) !important;
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+        }
+
+        .stats-table th {
+            background: rgba(15, 23, 42, 0.8) !important;
+            color: var(--text-main) !important;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .stats-table td {
+            border-top-color: rgba(255, 255, 255, 0.05) !important;
+            color: var(--text-main) !important;
+        }
 
         /* The Gliders for theme switcher */
-        .glass-radio-group { --bg: rgba(30, 41, 59, 0.6) !important; --text: var(--text-muted) !important; }
-        .glass-radio-group label:hover { color: var(--text-main) !important; }
-        .glass-radio-group input:checked+label { color: #020617 !important; text-shadow: none; }
+        .glass-radio-group {
+            --bg: rgba(30, 41, 59, 0.6) !important;
+            --text: var(--text-muted) !important;
+        }
+
+        .glass-radio-group label:hover {
+            color: var(--text-main) !important;
+        }
+
+        .glass-radio-group input:checked+label {
+            color: #020617 !important;
+            text-shadow: none;
+        }
+
         .glass-glider {
             background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
             box-shadow: 0 0 15px var(--primary) !important;
         }
 
         /* Make disabled items look stylish */
-        input[readonly], select:disabled, #teacherSubject, #logoutName, #logoutSubject, #logoutEmail, #logoutPassword {
-           background-color: rgba(15, 23, 42, 0.3) !important;
-           color: #64748b !important;
-           cursor: not-allowed;
-           border-color: rgba(255,255,255,0.05) !important;
+        input[readonly],
+        select:disabled,
+        #teacherSubject,
+        #logoutName,
+        #logoutSubject,
+        #logoutEmail,
+        #logoutPassword {
+            background-color: rgba(15, 23, 42, 0.3) !important;
+            color: #64748b !important;
+            cursor: not-allowed;
+            border-color: rgba(255, 255, 255, 0.05) !important;
         }
-        
+
         .whatsapp-btn {
             background: rgba(37, 211, 102, 0.2) !important;
             border-color: var(--whatsapp) !important;
             color: var(--whatsapp) !important;
         }
+
         .problem-btn {
             background: rgba(239, 68, 68, 0.2) !important;
             border-color: var(--danger) !important;
             color: var(--danger) !important;
         }
-        
+
         /* Fix the Loader Box */
         .loader {
             background: rgba(15, 23, 42, 0.8) !important;
             border-color: var(--primary) !important;
             box-shadow: 0 0 30px rgba(0, 242, 254, 0.2) !important;
         }
-        
+
         /* Toggle Bars */
-        .bars { background-color: var(--text-main) !important; }
+        .bars {
+            background-color: var(--text-main) !important;
+        }
 
         /* Star Rating UI */
         .star-rating {
@@ -1404,26 +1593,30 @@
             margin: 15px 0;
             direction: ltr;
         }
+
         .star-rating input {
             display: none;
         }
+
         .star-rating label {
             font-size: 40px !important;
             color: rgba(255, 255, 255, 0.2) !important;
             cursor: pointer;
             transition: color 0.2s, transform 0.2s;
         }
+
         .star-rating label:hover,
-        .star-rating label:hover ~ label,
-        .star-rating input:checked ~ label {
+        .star-rating label:hover~label,
+        .star-rating input:checked~label {
             color: #ffd700 !important;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.5) !important;
         }
+
         .star-rating label:active {
             transform: scale(0.9);
         }
     </style>
-    
+
     <!-- إضافة مكتبات Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -1444,7 +1637,9 @@
     </div>
 
     <!-- زر استكمال البيانات (مخفي افتراضياً) -->
-    <div class="complete-data-container" id="completeDataBtn" style="display:none; position: fixed; top: 15px; left: 15px; z-index: 1001; background: var(--primary); padding: 10px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); cursor: pointer; color: white; font-weight: bold; font-size: 14px; transition: 0.3s;" onclick="openCompleteDataModal()">
+    <div class="complete-data-container" id="completeDataBtn"
+        style="display:none; position: fixed; top: 15px; left: 15px; z-index: 1001; background: var(--primary); padding: 10px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); cursor: pointer; color: white; font-weight: bold; font-size: 14px; transition: 0.3s;"
+        onclick="openCompleteDataModal()">
         استكمال البيانات
     </div>
 
@@ -1455,17 +1650,17 @@
 
     <div class="side-menu" id="sideMenu">
         <div class="menu-item" onclick="location.reload()">🔄 تحديث الصفحة</div>
-        <div class="menu-item" id="installPwaBtn" style="display:none; background:#dbeafe; color:#1e40af;">📱 تثبيت التطبيق</div>
-        <div class="menu-item" style="background:#d1fae5; color:#065f46;" onclick="openAndroidDownloadModal()">📥 تحميل تطبيق الأندرويد</div>
+        <div class="menu-item" id="installPwaBtn" style="display:none; background:#dbeafe; color:#1e40af;">📱 تثبيت
+            التطبيق</div>
+        <div class="menu-item" style="background:#d1fae5; color:#065f46;" onclick="openAndroidDownloadModal()">📥 تحميل
+            تطبيق الأندرويد</div>
         <div class="menu-item" onclick="openTeacherAbsenceRecord()" style="background:#f0fdf4; color:#166534;">📝 سجل
             غياب المعلم وتعديله</div>
-        <div class="menu-item"
-            onclick="openRatingModal()">
+        <div class="menu-item" onclick="openRatingModal()">
             🌟 إرسال اقتراح أو تقييم</div>
         <div class="menu-item whatsapp-btn" onclick="window.open('https://wa.me/97366650752', '_blank')">💬 تواصل مع
             المؤسس (واتساب)</div>
-        <div class="menu-item problem-btn"
-            onclick="openReportProblemModal()">⚠️ لدي مشكلة</div>
+        <div class="menu-item problem-btn" onclick="openReportProblemModal()">⚠️ لدي مشكلة</div>
         <div class="menu-item info-btn" onclick="openAboutModal()">📄 نبذة عن النظام</div>
         <div class="menu-item" onclick="openResetModal()" style="background:#fff7ed; color:#ea580c;">⚙️ ضبط المصنع</div>
 
@@ -1585,7 +1780,9 @@
 
         <div id="submenu" style="display:none;">
             <h3 id="classTitle"></h3>
-            <h4 id="absentCounter" style="text-align:center; color:var(--danger); margin-top:-10px; margin-bottom:15px; font-weight:bold;">الغائبين : 0</h4>
+            <h4 id="absentCounter"
+                style="text-align:center; color:var(--danger); margin-top:-10px; margin-bottom:15px; font-weight:bold;">
+                الغائبين : 0</h4>
             <div id="subGrid" class="grid"></div>
             <div class="btn-wrapper">
                 <button class="submit" id="saveBtn" data-text="حفظ الغياب">NEXT</button>
@@ -1678,10 +1875,12 @@
                 <div
                     style="background:#f8fafc; border-radius:25px; padding:30px; border:1px solid #e2e8f0; text-align:right; color: black !important;">
                     <h4 style="color: black !important;">نبذة حول نظام الغياب الذكي</h4>
-                    <p style="color: black !important;">حل تقني مبتكر يهدف إلى تسهيل إدارة الحضور والغياب المدرسية بواجهة تفاعلية تضمن الدقة والسرعة.</p>
+                    <p style="color: black !important;">حل تقني مبتكر يهدف إلى تسهيل إدارة الحضور والغياب المدرسية
+                        بواجهة تفاعلية تضمن الدقة والسرعة.</p>
                     <hr style="border:0; border-top:1px solid #e2e8f0; margin:25px 0;">
                     <h4 style="color: black !important;">عن المطور</h4>
-                    <p style="color: black !important;">تم تطوير المشروع بجهود الطالب <strong>يحيى حميد عبدالمجيد</strong> (الصف الثاني إعدادي)، تعبيراً
+                    <p style="color: black !important;">تم تطوير المشروع بجهود الطالب <strong>يحيى حميد
+                            عبدالمجيد</strong> (الصف الثاني إعدادي)، تعبيراً
                         عن شغفه بالتحول الرقمي في التعليم.</p>
                 </div>
             </div>
@@ -1757,98 +1956,124 @@
             flex-direction: column;
             max-height: 95vh;
         }
-        #reportProblemOverlay .modal-card > * {
+
+        #reportProblemOverlay .modal-card>* {
             flex-shrink: 0;
         }
+
         #reportProblemOverlay #rpProblemDescription {
             flex-shrink: 1 !important;
             flex-grow: 1 !important;
             min-height: 60px;
         }
     </style>
-        <div class="overlay" id="ratingOverlay" style="z-index: 10002;">
-            <div class="modal-card" style="overflow-y: auto;">
-                <h3 style="color: var(--primary);">🌟 تقييم النظام والمقترحات</h3>
-                <p style="color: #64748b; font-size: 14px; margin-bottom: 15px;">يسعدنا سماع رأيك لتحسين النظام</p>
-                
-                <label style="text-align: right; display: block;">الاسم:</label>
-                <input type="text" id="rtName" readonly style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;" dir="rtl">
-                
-                <label style="text-align: right; display: block;">الإيميل:</label>
-                <input type="email" id="rtEmail" readonly style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; text-align: left; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;" dir="ltr">
-                
-                <label style="text-align: right; display: block;">كلمة المرور:</label>
-                <input type="text" id="rtPassword" readonly style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; text-align: left; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;" dir="ltr">
-                
-                <label style="text-align: center; display: block; margin-top: 10px; color: var(--primary); font-weight: bold;">التقييم:</label>
-                <div class="star-rating">
-                    <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
-                    <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                    <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                    <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                    <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-                </div>
+    <div class="overlay" id="ratingOverlay" style="z-index: 10002;">
+        <div class="modal-card" style="overflow-y: auto;">
+            <h3 style="color: var(--primary);">🌟 تقييم النظام والمقترحات</h3>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 15px;">يسعدنا سماع رأيك لتحسين النظام</p>
 
-                <label style="text-align: right; display: block; margin-top: 10px;">المقترحات (اختياري):</label>
-                <textarea id="rtSuggestion" rows="3" placeholder="اكتب مقترحك هنا (ليس إجبارياً)..." style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; resize: none; font-family: inherit; margin-bottom: 15px; background: rgba(15, 23, 42, 0.6); color: var(--text-main);"></textarea>
+            <label style="text-align: right; display: block;">الاسم:</label>
+            <input type="text" id="rtName" readonly
+                style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;"
+                dir="rtl">
 
-                <div class="btn-wrapper" style="margin-top: 10px;">
-                    <button class="submit" onclick="submitRating()" data-text="إرسال">إرسال</button>
-                </div>
-                <div class="btn-normal" style="margin-top: 15px; background: rgba(239, 68, 68, 0.2); color: var(--danger); border-color: var(--danger);" onclick="closeRatingModal()">إلغاء</div>
+            <label style="text-align: right; display: block;">الإيميل:</label>
+            <input type="email" id="rtEmail" readonly
+                style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; text-align: left; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;"
+                dir="ltr">
+
+            <label style="text-align: right; display: block;">كلمة المرور:</label>
+            <input type="text" id="rtPassword" readonly
+                style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; text-align: left; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;"
+                dir="ltr">
+
+            <label
+                style="text-align: center; display: block; margin-top: 10px; color: var(--primary); font-weight: bold;">التقييم:</label>
+            <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
             </div>
+
+            <label style="text-align: right; display: block; margin-top: 10px;">المقترحات (اختياري):</label>
+            <textarea id="rtSuggestion" rows="3" placeholder="اكتب مقترحك هنا (ليس إجبارياً)..."
+                style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; resize: none; font-family: inherit; margin-bottom: 15px; background: rgba(15, 23, 42, 0.6); color: var(--text-main);"></textarea>
+
+            <div class="btn-wrapper" style="margin-top: 10px;">
+                <button class="submit" onclick="submitRating()" data-text="إرسال">إرسال</button>
+            </div>
+            <div class="btn-normal"
+                style="margin-top: 15px; background: rgba(239, 68, 68, 0.2); color: var(--danger); border-color: var(--danger);"
+                onclick="closeRatingModal()">إلغاء</div>
         </div>
+    </div>
 
     <div id="reportProblemOverlay" class="overlay">
         <div class="modal-card" style="overflow-y: auto;">
             <h3>⚠️ لدي مشكلة</h3>
-            <p style="color: #64748b; font-size: 14px; margin-bottom: 15px;">الرجاء تعبئة النموذج أدناه للإبلاغ عن مشكلة</p>
-            
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 15px;">الرجاء تعبئة النموذج أدناه للإبلاغ عن مشكلة
+            </p>
+
             <label style="display:block; text-align:right;">الاسم:</label>
-            <input type="text" id="rpName" readonly style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
-            
+            <input type="text" id="rpName" readonly
+                style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
+
             <label style="display:block; text-align:right;">المادة:</label>
-            <input type="text" id="rpSubject" readonly style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
-            
+            <input type="text" id="rpSubject" readonly
+                style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
+
             <label style="display:block; text-align:right;">البريد الإلكتروني:</label>
-            <input type="email" id="rpEmail" readonly dir="ltr" style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
-            
+            <input type="email" id="rpEmail" readonly dir="ltr"
+                style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
+
             <label style="display:block; text-align:right;">كلمة المرور:</label>
-            <input type="text" id="rpPassword" readonly dir="ltr" style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
-            
+            <input type="text" id="rpPassword" readonly dir="ltr"
+                style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
+
             <hr style="border:0; border-top:1px solid #e2e8f0; margin:15px 0;">
-            
-            <label style="display:block; text-align:right; font-weight: bold; margin-bottom: 10px;">اختر طريقة التواصل:</label>
+
+            <label style="display:block; text-align:right; font-weight: bold; margin-bottom: 10px;">اختر طريقة
+                التواصل:</label>
             <div style="display: flex; flex-direction: column; gap: 10px; text-align: right; margin-bottom: 15px;">
                 <label id="rpOptionEmail" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                    <input type="radio" name="rpContactMethod" value="من خلال الايميل" style="width: 18px; height: 18px;">
+                    <input type="radio" name="rpContactMethod" value="من خلال الايميل"
+                        style="width: 18px; height: 18px;">
                     من خلال الايميل
                 </label>
                 <label id="rpOptionWhatsApp" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                    <input type="radio" name="rpContactMethod" value="من خلال الواتساب" style="width: 18px; height: 18px;">
+                    <input type="radio" name="rpContactMethod" value="من خلال الواتساب"
+                        style="width: 18px; height: 18px;">
                     من خلال الواتساب
                 </label>
                 <label id="rpOptionTeams" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                    <input type="radio" name="rpContactMethod" value="من خلال التيمز" style="width: 18px; height: 18px;">
+                    <input type="radio" name="rpContactMethod" value="من خلال التيمز"
+                        style="width: 18px; height: 18px;">
                     من خلال التيمز
                 </label>
                 <label id="rpOptionWebsite" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                    <input type="radio" name="rpContactMethod" value="من خلال الموقع" style="width: 18px; height: 18px;">
+                    <input type="radio" name="rpContactMethod" value="من خلال الموقع"
+                        style="width: 18px; height: 18px;">
                     من خلال الموقع
                 </label>
                 <label id="rpOptionSchool" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                    <input type="radio" name="rpContactMethod" value="في المدرسة" style="width: 18px; height: 18px;" checked>
+                    <input type="radio" name="rpContactMethod" value="في المدرسة" style="width: 18px; height: 18px;"
+                        checked>
                     في المدرسة
                 </label>
             </div>
 
             <label style="display:block; text-align:right; font-weight: bold;">قم بوصف المشكلة:</label>
-            <textarea id="rpProblemDescription" rows="4" placeholder="اكتب وصفاً مفصلاً للمشكلة هنا..." style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; margin-bottom: 10px; font-family: inherit; resize: none;"></textarea>
-            
+            <textarea id="rpProblemDescription" rows="4" placeholder="اكتب وصفاً مفصلاً للمشكلة هنا..."
+                style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; margin-bottom: 10px; font-family: inherit; resize: none;"></textarea>
+
             <div class="btn-wrapper" style="margin-top: 15px;">
-                <button class="submit" id="sendProblemReportBtn" data-text="إرسال" onclick="sendProblemReport()">إرسال</button>
+                <button class="submit" id="sendProblemReportBtn" data-text="إرسال"
+                    onclick="sendProblemReport()">إرسال</button>
             </div>
-            <div onclick="document.getElementById('reportProblemOverlay').style.display='none'" style="margin-top:15px; cursor:pointer; color:#94a3b8;">إلغاء</div>
+            <div onclick="document.getElementById('reportProblemOverlay').style.display='none'"
+                style="margin-top:15px; cursor:pointer; color:#94a3b8;">إلغاء</div>
         </div>
     </div>
 
@@ -1857,31 +2082,38 @@
         <div class="modal-card">
             <h3>📋 استكمال البيانات</h3>
             <p style="color: #64748b; font-size: 14px; margin-bottom: 15px;">الرجاء تحديث بياناتك أدناه</p>
-            
+
             <label style="display:block; text-align:right;">الاسم:</label>
-            <input type="text" id="cdName" readonly style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
-            
+            <input type="text" id="cdName" readonly
+                style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
+
             <label style="display:block; text-align:right;">المادة:</label>
-            <input type="text" id="cdSubject" readonly style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
-            
+            <input type="text" id="cdSubject" readonly
+                style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
+
             <label style="display:block; text-align:right;">البريد الإلكتروني:</label>
-            <input type="email" id="cdEmail" readonly dir="ltr" style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
-            
+            <input type="email" id="cdEmail" readonly dir="ltr"
+                style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
+
             <label style="display:block; text-align:right;">كلمة المرور:</label>
-            <input type="text" id="cdPassword" readonly dir="ltr" style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
-            
+            <input type="text" id="cdPassword" readonly dir="ltr"
+                style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 10px;">
+
             <hr style="border:0; border-top:1px solid #e2e8f0; margin:15px 0;">
-            
+
             <label style="display:block; text-align:right;">رقم الهاتف:</label>
-            <input type="tel" id="cdPhone" required placeholder="أدخل رقم الهاتف..." dir="ltr" style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; margin-bottom: 10px; font-family: inherit;">
-            
+            <input type="tel" id="cdPhone" required placeholder="أدخل رقم الهاتف..." dir="ltr"
+                style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; margin-bottom: 10px; font-family: inherit;">
+
             <label style="display:block; text-align:right;">الرقم السكاني:</label>
-            <input type="number" id="cdCivilId" required placeholder="أدخل الرقم السكاني..." dir="ltr" style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; margin-bottom: 10px; font-family: inherit;">
-            
+            <input type="number" id="cdCivilId" required placeholder="أدخل الرقم السكاني..." dir="ltr"
+                style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; margin-bottom: 10px; font-family: inherit;">
+
             <div class="btn-wrapper" style="margin-top: 15px;">
                 <button class="submit" id="saveCompleteDataBtn" data-text="حفظ البيانات">حفظ البيانات</button>
             </div>
-            <div onclick="document.getElementById('completeDataOverlay').style.display='none'" style="margin-top:15px; cursor:pointer; color:#94a3b8;">إلغاء</div>
+            <div onclick="document.getElementById('completeDataOverlay').style.display='none'"
+                style="margin-top:15px; cursor:pointer; color:#94a3b8;">إلغاء</div>
         </div>
     </div>
 
@@ -2065,7 +2297,7 @@
                     // تغيرت الحصة: نقوم بفتح الفصول من جديد (مسح الأقفال وسجل الحصة المؤقت)
                     localStorage.removeItem("completedClasses");
                     localStorage.removeItem("currentSessionAbsence");
-                    
+
                     // تحديث واجهة الفصول إذا كان المعلم في شاشة الفصول
                     if (document.getElementById("welcome") && document.getElementById("welcome").style.display === "block") {
                         document.getElementById("startBtn").click();
@@ -2115,29 +2347,29 @@
             document.getElementById("cdSubject").value = loggedInTeacherSubject || "";
             document.getElementById("cdEmail").value = loggedInEmail || "غير متوفر";
             document.getElementById("cdPassword").value = loggedInPassword || "غير متوفر";
-            
+
             document.getElementById("cdPhone").value = "";
             document.getElementById("cdCivilId").value = "";
-            
+
             document.getElementById("completeDataOverlay").style.display = "flex";
         }
 
         document.getElementById("saveCompleteDataBtn").onclick = () => {
             const phone = document.getElementById("cdPhone").value.trim();
             const civilId = document.getElementById("cdCivilId").value.trim();
-            
-            if(!phone || !civilId) {
+
+            if (!phone || !civilId) {
                 return alert("الرجاء تعبئة رقم الهاتف والرقم السكاني");
             }
-            
+
             document.getElementById("loader").style.display = "flex";
             const loaderText = document.querySelector("#loader p");
             if (loaderText) loaderText.textContent = "جاري إرسال البيانات...";
-            
+
             const dateObj = new Date();
             const dateStr = dateObj.toLocaleDateString("ar-EG");
             const timeStr = dateObj.toLocaleTimeString("ar-EG");
-            
+
             const payload = [{
                 "name": document.getElementById("cdName").value,
                 "subject": document.getElementById("cdSubject").value,
@@ -2148,15 +2380,15 @@
                 "date": dateStr,
                 "time": timeStr
             }];
-            
+
             try {
                 fetch(COMPLETE_DATA_URL, { method: "POST", mode: "no-cors", body: JSON.stringify(payload) });
-                
+
                 // حفظ العلامة في التخزين المحلي بحيث لا تظهر مرة أخرى للمعلم
                 localStorage.setItem("dataCompleted_" + loggedInTeacherName, "true");
                 localStorage.setItem("teacherPhone_" + loggedInTeacherName, phone);
                 localStorage.setItem("teacherCivilId_" + loggedInTeacherName, civilId);
-                
+
                 setTimeout(() => {
                     document.getElementById("loader").style.display = "none";
                     if (loaderText) loaderText.textContent = "جاري حفظ البيانات طيراناً...";
@@ -2164,7 +2396,7 @@
                     document.getElementById("completeDataOverlay").style.display = "none";
                     document.getElementById("completeDataBtn").style.display = "none";
                 }, 1500);
-            } catch(e) {
+            } catch (e) {
                 document.getElementById("loader").style.display = "none";
                 if (loaderText) loaderText.textContent = "جاري حفظ البيانات طيراناً...";
                 alert("حدث خطأ في الاتصال");
@@ -2185,7 +2417,7 @@
             document.getElementById("rtEmail").value = loggedInEmail || "غير متوفر";
             document.getElementById("rtPassword").value = loggedInPassword || "غير متوفر";
             document.getElementById("rtSuggestion").value = "";
-            
+
             // تصفير النجوم
             const stars = document.getElementsByName("rating");
             stars.forEach(star => star.checked = false);
@@ -2237,16 +2469,16 @@
                 },
                 body: JSON.stringify(data)
             })
-            .then(() => {
-                document.getElementById("loader").style.display = "none";
-                alert("تم إرسال التقييم بنجاح، شكراً لك!");
-                closeRatingModal();
-            })
-            .catch(error => {
-                document.getElementById("loader").style.display = "none";
-                alert("حدث خطأ أثناء الإرسال. يرجى المحاولة لاحقاً.");
-                console.error("Error:", error);
-            });
+                .then(() => {
+                    document.getElementById("loader").style.display = "none";
+                    alert("تم إرسال التقييم بنجاح، شكراً لك!");
+                    closeRatingModal();
+                })
+                .catch(error => {
+                    document.getElementById("loader").style.display = "none";
+                    alert("حدث خطأ أثناء الإرسال. يرجى المحاولة لاحقاً.");
+                    console.error("Error:", error);
+                });
         }
 
         function openReportProblemModal() {
@@ -2285,7 +2517,7 @@
             // جعل الخيار "في المدرسة" هو الافتراضي دائمًا عند فتح النافذة
             const radios = document.getElementsByName("rpContactMethod");
             radios.forEach(r => {
-                if(r.value === "في المدرسة") r.checked = true;
+                if (r.value === "في المدرسة") r.checked = true;
                 else r.checked = false;
             });
 
@@ -2348,18 +2580,18 @@
                     }, 1500);
                 } else {
                     fetch(REPORT_PROBLEM_URL, { method: "POST", mode: "no-cors", body: JSON.stringify(payload) })
-                    .then(() => {
-                        setTimeout(() => {
+                        .then(() => {
+                            setTimeout(() => {
+                                document.getElementById("loader").style.display = "none";
+                                if (loaderText) loaderText.textContent = "جاري حفظ البيانات طيراناً...";
+                                alert("تم إرسال بلاغك بنجاح. سنتواصل معك في أقرب وقت عبر: " + selectedMethod);
+                                document.getElementById("reportProblemOverlay").style.display = "none";
+                            }, 1000);
+                        }).catch(e => {
                             document.getElementById("loader").style.display = "none";
                             if (loaderText) loaderText.textContent = "جاري حفظ البيانات طيراناً...";
-                            alert("تم إرسال بلاغك بنجاح. سنتواصل معك في أقرب وقت عبر: " + selectedMethod);
-                            document.getElementById("reportProblemOverlay").style.display = "none";
-                        }, 1000);
-                    }).catch(e => {
-                        document.getElementById("loader").style.display = "none";
-                        if (loaderText) loaderText.textContent = "جاري حفظ البيانات طيراناً...";
-                        alert("حدث خطأ في الاتصال");
-                    });
+                            alert("حدث خطأ في الاتصال");
+                        });
                 }
             } catch (e) {
                 document.getElementById("loader").style.display = "none";
@@ -2414,7 +2646,7 @@
                 document.getElementById("login").style.display = "none";
                 document.getElementById("returningTeacherWelcome").style.display = "block";
                 document.querySelector(".menu-container").style.display = "block";
-                if(document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
+                if (document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
                 checkCompleteDataStatus();
                 document.getElementById("returningWelcomeMsg").textContent = "مرحباً أ/ " + loggedInTeacherName;
 
@@ -2439,7 +2671,7 @@
             if (loggedInEmail === "yahyahameed2025@gmail.com" && loggedInPassword === "yahya2025") {
                 const name = "المؤسس يحيى حميد";
                 const subject = "الإدارة";
-                
+
                 localStorage.setItem("teacherInfo", JSON.stringify({ name: name, subject: subject, email: loggedInEmail, password: loggedInPassword }));
                 loggedInTeacherName = name;
                 loggedInTeacherSubject = subject;
@@ -2447,18 +2679,18 @@
                 document.getElementById("login").style.display = "none";
                 document.getElementById("returningTeacherWelcome").style.display = "block";
                 document.querySelector(".menu-container").style.display = "block";
-                if(document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
+                if (document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
                 checkCompleteDataStatus();
                 document.getElementById("returningWelcomeMsg").textContent = "مرحباً أ/ " + loggedInTeacherName;
-                
+
                 if (document.getElementById("welcomeMsg")) {
                     document.getElementById("welcomeMsg").textContent = "إعدادات الحصة";
                 }
 
-                if(document.getElementById("subjectLabel")) document.getElementById("subjectLabel").style.display = "none";
-                if(document.getElementById("dropdown1")) {
+                if (document.getElementById("subjectLabel")) document.getElementById("subjectLabel").style.display = "none";
+                if (document.getElementById("dropdown1")) {
                     document.getElementById("dropdown1").style.display = "none";
-                    
+
                     let dropdown1 = document.getElementById("dropdown1");
                     let exists = Array.from(dropdown1.options).some(opt => opt.value === subject);
                     if (!exists) {
@@ -2494,25 +2726,25 @@
 
                 loggedInTeacherName = foundTeacher.name;
                 loggedInTeacherSubject = foundTeacher.subject;
-                
+
                 // تحديث المعلم الحالي
                 localStorage.setItem("teacherInfo", JSON.stringify(foundTeacher));
 
                 document.getElementById("login").style.display = "none";
                 document.getElementById("returningTeacherWelcome").style.display = "block";
                 document.querySelector(".menu-container").style.display = "block";
-                if(document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
+                if (document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
                 checkCompleteDataStatus();
                 document.getElementById("returningWelcomeMsg").textContent = "مرحباً أ/ " + loggedInTeacherName;
-                
+
                 if (document.getElementById("welcomeMsg")) {
                     document.getElementById("welcomeMsg").textContent = "إعدادات الحصة";
                 }
 
-                if(document.getElementById("subjectLabel")) document.getElementById("subjectLabel").style.display = "none";
-                if(document.getElementById("dropdown1")) {
+                if (document.getElementById("subjectLabel")) document.getElementById("subjectLabel").style.display = "none";
+                if (document.getElementById("dropdown1")) {
                     document.getElementById("dropdown1").style.display = "none";
-                    
+
                     let dropdown1 = document.getElementById("dropdown1");
                     let exists = Array.from(dropdown1.options).some(opt => opt.value === loggedInTeacherSubject);
                     if (!exists) {
@@ -2523,7 +2755,7 @@
                     }
                     dropdown1.value = loggedInTeacherSubject;
                 }
-                
+
                 // تحديث الدردشة إن وجدت
                 if (typeof listenToMessages === 'function') {
                     listenToMessages();
@@ -2535,7 +2767,7 @@
             document.getElementById("login").style.display = "none";
             document.getElementById("teacherInfoSetup").style.display = "block";
             document.querySelector(".menu-container").style.display = "block";
-            if(document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
+            if (document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
         }
 
         // دالة للمتابعة من شاشة الترحيب إلى شاشة إعداد الحصة
@@ -2553,7 +2785,7 @@
             document.getElementById("setup").style.display = "none";
             document.getElementById("logoutSetup").style.display = "block";
             document.querySelector(".menu-container").style.display = "none";
-            if(document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "none";
+            if (document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "none";
 
             // تعبئة البيانات
             document.getElementById("logoutName").value = loggedInTeacherName;
@@ -2566,7 +2798,7 @@
             document.getElementById("logoutSetup").style.display = "none";
             document.getElementById("returningTeacherWelcome").style.display = "block";
             document.querySelector(".menu-container").style.display = "block";
-            if(document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
+            if (document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
         }
 
         document.getElementById("sendLogoutReasonBtn").onclick = () => {
@@ -2622,8 +2854,8 @@
                     document.getElementById("chatWidget").style.display = "none";
                 }
             }
-            else { 
-                document.getElementById("sideMenu").classList.remove("open"); 
+            else {
+                document.getElementById("sideMenu").classList.remove("open");
                 if (document.getElementById("chatWidget")) {
                     document.getElementById("chatWidget").style.display = "block";
                 }
@@ -2994,7 +3226,7 @@
 
                 // نحفظها محلياً حتى لو فشل الاتصال بالإنترنت
                 localStorage.setItem("teacherInfo", JSON.stringify({ name: name, subject: subject, email: loggedInEmail, password: loggedInPassword }));
-                
+
                 let allTeachers = JSON.parse(localStorage.getItem("allTeachers") || "{}");
                 allTeachers[loggedInEmail + "|" + loggedInPassword] = { name: name, subject: subject, email: loggedInEmail, password: loggedInPassword };
                 localStorage.setItem("allTeachers", JSON.stringify(allTeachers));
@@ -3058,10 +3290,10 @@
             void welcomeEl.offsetWidth;
             welcomeEl.classList.add("smooth-appear");
             const main = document.getElementById("main");
-            
+
             // إظهار رسالة تحميل أثناء جلب الفصول المخصصة للمعلم
             main.innerHTML = "<div style='width: 100%; text-align: center; color: var(--primary); font-weight: bold; padding: 20px;'>جاري تحميل الفصول...</div>";
-            
+
             let assignedClasses = null;
             if (typeof isFirebaseInitialized !== "undefined" && isFirebaseInitialized) {
                 try {
@@ -3082,12 +3314,12 @@
             levels.forEach(level => {
                 for (let i = 1; i <= level.count; i++) {
                     const label = `${level.name} ${i}`;
-                    
+
                     // التصفية: عرض الفصل فقط إذا كان مخصصاً للمعلم (أو عرض كل الفصول إذا لم يخصص له شيء)
                     if (assignedClasses && !assignedClasses.includes(label)) {
                         continue;
                     }
-                    
+
                     const div = document.createElement("div"); div.className = "card";
                     if (completedClasses.includes(label)) {
                         div.classList.add("completed"); div.textContent = label;
@@ -3098,7 +3330,7 @@
                     main.appendChild(div);
                 }
             });
-            
+
             if (main.innerHTML === "") {
                 main.innerHTML = "<div style='width: 100%; text-align: center; color: var(--danger); font-weight: bold; padding: 20px;'>لا يوجد فصول معينة لك حالياً، تواصل مع الإدارة.</div>";
             }
@@ -3107,11 +3339,11 @@
         function openAbsenceSheet(label) {
             currentLabel = label;
             document.getElementById("classTitle").textContent = "طلاب فصل " + label;
-            
+
             const absentCounter = document.getElementById("absentCounter");
-            if(absentCounter) absentCounter.textContent = "الغائبين : 0";
+            if (absentCounter) absentCounter.textContent = "الغائبين : 0";
             let currentAbsents = 0;
-            
+
             document.getElementById("welcome").style.display = "none";
             const submenu = document.getElementById("submenu");
             submenu.style.display = "block";
@@ -3128,7 +3360,7 @@
                     } else {
                         currentAbsents--;
                     }
-                    if(absentCounter) absentCounter.textContent = "الغائبين : " + currentAbsents;
+                    if (absentCounter) absentCounter.textContent = "الغائبين : " + currentAbsents;
                 };
                 subGrid.appendChild(div);
             }
@@ -3188,9 +3420,9 @@
             }
         };
 
-        document.getElementById("backBtn").onclick = () => { 
-            document.getElementById("submenu").style.display = "none"; 
-            document.getElementById("welcome").style.display = "block"; 
+        document.getElementById("backBtn").onclick = () => {
+            document.getElementById("submenu").style.display = "none";
+            document.getElementById("welcome").style.display = "block";
         };
 
         function confirmUnlock() {
@@ -3206,17 +3438,17 @@
 
         function confirmReset() {
             const code = Array.from(document.querySelectorAll("#resetCodeInputs input")).map(i => i.value).join("");
-            if (code === "0000") { 
-                localStorage.removeItem("completedClasses"); 
-                localStorage.removeItem("currentSessionAbsence"); 
-                location.reload(); 
-            } else { 
-                alert("❌ خطأ"); 
+            if (code === "0000") {
+                localStorage.removeItem("completedClasses");
+                localStorage.removeItem("currentSessionAbsence");
+                location.reload();
+            } else {
+                alert("❌ خطأ");
             }
         }
 
         // === نظام الدردشة باستخدام Firebase ===
-        
+
         // --- إعدادات Firebase (ضع بيانات مشروعك الحقيقية هنا) ---
         const firebaseConfig = {
             apiKey: "AIzaSyBDhWSokVjK2e31wMmM6sPWvRp8DrtZSc0",
@@ -3231,7 +3463,7 @@
 
         let isFirebaseInitialized = false;
         let currentMessagesRef = null;
-        
+
         try {
             if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
                 firebase.initializeApp(firebaseConfig);
@@ -3262,17 +3494,17 @@
             }
         }
 
-        window.handleChatKeyPress = function(event) {
+        window.handleChatKeyPress = function (event) {
             if (event.key === "Enter") {
                 sendChatMessage();
             }
         };
 
-        window.sendChatMessage = function() {
+        window.sendChatMessage = function () {
             const input = document.getElementById("chatInput");
             const text = input.value.trim();
             if (!text) return;
-            
+
             // استخدام loggedInTeacherName مباشرة (لأنها معرفة بـ let ولا ترتبط بـ window)
             const senderName = loggedInTeacherName || "معلم (غير مسجل)";
             const chatPath = "messages/" + senderName;
@@ -3287,7 +3519,7 @@
             } else {
                 appendMessageToUI("local_" + Date.now(), { text: text, sender: senderName, role: "teacher" });
             }
-            
+
             input.value = "";
         };
 
@@ -3297,25 +3529,25 @@
         function listenToMessages() {
             if (!isFirebaseInitialized) return;
             const senderName = loggedInTeacherName || "معلم (غير مسجل)";
-            
+
             if (lastListenedTeacher === senderName) return; // لا نكرر الاستماع لنفس المعلم
-            
+
             if (currentMessagesRef) {
                 currentMessagesRef.off();
                 document.getElementById("chatMessages").innerHTML = '<div style="text-align:center; color:#94a3b8; font-size:12px; margin-top:20px;">تم تحميل بيانات الدردشة بشكل آمن ومستقل.</div>';
                 renderedMessages = {};
             }
-            
+
             lastListenedTeacher = senderName;
             currentMessagesRef = firebase.database().ref("messages/" + senderName);
-            
+
             currentMessagesRef.on("child_added", (snapshot) => {
                 const msgId = snapshot.key;
                 const msg = snapshot.val();
                 if (!renderedMessages[msgId]) {
                     renderedMessages[msgId] = msg;
                     appendMessageToUI(msgId, msg);
-                    
+
                     if (!isChatOpen && msg && msg.role === "admin") {
                         unreadCount++;
                         const badge = document.getElementById("unreadBadge");
@@ -3343,7 +3575,7 @@
                 }
             });
         }
-        
+
         // التحقق دورياً لتحديث الدردشة إذا تغير اسم المعلم المسجل
         setInterval(() => {
             if (loggedInTeacherName && lastListenedTeacher !== loggedInTeacherName && isFirebaseInitialized) {
@@ -3354,7 +3586,7 @@
         function updateMessageInUI(msgId, msg) {
             const msgDiv = document.getElementById("msg-" + msgId);
             if (!msgDiv) return;
-            
+
             const textDiv = msgDiv.querySelector(".msg-text-content");
             if (textDiv) {
                 textDiv.textContent = msg.text;
@@ -3370,7 +3602,7 @@
             }
         }
 
-        window.editChatMessage = function(msgId, oldText) {
+        window.editChatMessage = function (msgId, oldText) {
             const newText = prompt("تعديل الرسالة:", oldText);
             if (newText !== null && newText.trim() !== "" && newText !== oldText) {
                 const senderName = loggedInTeacherName || "معلم (غير مسجل)";
@@ -3381,14 +3613,14 @@
             }
         };
 
-        window.deleteChatMessage = function(msgId) {
+        window.deleteChatMessage = function (msgId) {
             if (confirm("هل أنت متأكد من مسح هذه الرسالة؟")) {
                 const senderName = loggedInTeacherName || "معلم (غير مسجل)";
                 firebase.database().ref("messages/" + senderName + "/" + msgId).remove();
             }
         };
 
-        window.forwardChatMessage = function(text) {
+        window.forwardChatMessage = function (text) {
             const input = document.getElementById("chatInput");
             input.value = text;
             input.focus();
@@ -3398,24 +3630,24 @@
             if (!msg || !msg.text) return; // نتجاهل الرسائل غير المكتملة أو undefined
 
             const container = document.getElementById("chatMessages");
-            
-            if(container.innerHTML.includes("الرجاء إعداد روابط") || container.innerHTML.includes("للرد والإرسال") || container.innerHTML.includes("تم تحميل بيانات الدردشة")) {
+
+            if (container.innerHTML.includes("الرجاء إعداد روابط") || container.innerHTML.includes("للرد والإرسال") || container.innerHTML.includes("تم تحميل بيانات الدردشة")) {
                 container.innerHTML = "";
             }
 
             const msgDiv = document.createElement("div");
             msgDiv.className = "chat-message";
             msgDiv.id = "msg-" + msgId;
-            
+
             const currentSender = loggedInTeacherName || "معلم (غير مسجل)";
             const isMine = (msg.sender === currentSender && msg.role === "teacher");
-            
+
             msgDiv.classList.add(isMine ? "msg-mine" : "msg-other");
-            
+
             const senderSpan = document.createElement("div");
             senderSpan.className = "msg-sender";
             senderSpan.textContent = msg.sender + (msg.role === "admin" ? " (الإدارة)" : "");
-            
+
             const textSpan = document.createElement("div");
             textSpan.className = "msg-text-content";
             textSpan.textContent = msg.text;
@@ -3428,10 +3660,10 @@
                 editedSpan.textContent = "(تم التعديل)";
                 textSpan.appendChild(editedSpan);
             }
-            
+
             msgDiv.appendChild(senderSpan);
             msgDiv.appendChild(textSpan);
-            
+
             // أزرار التحكم
             const actionsDiv = document.createElement("div");
             actionsDiv.className = "chat-msg-actions";
@@ -3455,7 +3687,7 @@
                 editBtn.style.cursor = "pointer";
                 editBtn.style.opacity = "0.8";
                 editBtn.onclick = () => editChatMessage(msgId, msg.text);
-                
+
                 const deleteBtn = document.createElement("span");
                 deleteBtn.textContent = "🗑 مسح";
                 deleteBtn.style.cursor = "pointer";
@@ -3467,7 +3699,7 @@
             }
 
             msgDiv.appendChild(actionsDiv);
-            
+
             container.appendChild(msgDiv);
             scrollToChatBottom();
         }
@@ -3479,7 +3711,8 @@
     </script>
 
     <!-- شريط الحقوق السفلي -->
-    <div style="position: fixed; bottom: 0; left: 0; width: 100%; height: 40px; font-family: inherit; background: linear-gradient(135deg, var(--primary, #4f46e5), var(--secondary, #7c3aed)); color: white; display: flex; justify-content: center; align-items: center; z-index: 9990; font-size: 15px; font-weight: bold; box-shadow: 0 -4px 15px rgba(0,0,0,0.1);">
+    <div
+        style="position: fixed; bottom: 0; left: 0; width: 100%; height: 40px; font-family: inherit; background: linear-gradient(135deg, var(--primary, #4f46e5), var(--secondary, #7c3aed)); color: white; display: flex; justify-content: center; align-items: center; z-index: 9990; font-size: 15px; font-weight: bold; box-shadow: 0 -4px 15px rgba(0,0,0,0.1);">
         برمجة الطالب يحيى حميد | جميع الحقوق محفوظة &copy;
     </div>
 
@@ -3542,7 +3775,9 @@
                 هذا تطبيق تسجيل الغياب الذكي الخاص بأجهزة الأندرويد. قم بالضغط على زر التحميل لتنزيله.
             </p>
             <a href="https://www.appcreator24.com/app4022502-5pehqr" target="_blank" style="text-decoration:none;">
-                <div class="submit" style="margin: 0 auto; display: flex; justify-content: center; text-align: center; margin-bottom: 15px;" data-text="تحميل التطبيق الآن">
+                <div class="submit"
+                    style="margin: 0 auto; display: flex; justify-content: center; text-align: center; margin-bottom: 15px;"
+                    data-text="تحميل التطبيق الآن">
                     تحميل التطبيق الآن
                 </div>
             </a>
