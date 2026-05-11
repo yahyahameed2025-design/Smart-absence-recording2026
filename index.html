@@ -1700,6 +1700,9 @@
                         style="text-align: left;">
                     <span>كلمة المرور</span>
                 </label>
+                <div style="text-align: right; margin-top: -5px; margin-bottom: 5px;">
+                    <a href="#" onclick="openForgotPasswordOverlay(event)" style="color: #00bfff; text-decoration: none; font-size: 14px;">نسيت كلمة المرور؟</a>
+                </div>
                 <button class="form-submit" type="submit" style="width: 100%; margin-top: 10px;">دخول</button>
             </form>
         </div>
@@ -1913,6 +1916,49 @@
             </div>
             <div onclick="document.getElementById('adminAuthOverlay').style.display='none'"
                 style="margin-top:15px; cursor:pointer; color:#94a3b8;">إلغاء</div>
+        </div>
+    </div>
+
+    <!-- نافذة استعادة كلمة المرور -->
+    <div id="forgotPasswordOverlay" class="overlay">
+        <div class="modal-card" id="fpStep1">
+            <h3 style="color: var(--primary);">نسيت كلمة المرور</h3>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 15px;">الرجاء كتابة الإيميل المسجل به مسبقاً</p>
+            <input type="email" id="fpEmailInput" placeholder="أدخل الإيميل..." dir="ltr"
+                style="text-align:left; width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; margin-bottom: 15px; font-family: inherit; background-color: #f1f5f9; color: #64748b;">
+            <div class="btn-wrapper">
+                <button class="submit" onclick="fpGoToStep2()" data-text="متابعة">متابعة</button>
+            </div>
+            <div onclick="document.getElementById('forgotPasswordOverlay').style.display='none'"
+                style="margin-top:15px; cursor:pointer; color:#94a3b8;">إلغاء</div>
+        </div>
+
+        <div class="modal-card" id="fpStep2" style="display:none;">
+            <h3 style="color: var(--primary);">استعادة كلمة المرور</h3>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 15px;">اختر اسمك ليتم استعادة كلمة المرور</p>
+            <label style="display:block; text-align:right;">المعلم:</label>
+            <select id="fpTeacherName" onchange="fpUpdateSubject()"
+                style="width:100%; padding:14px; border-radius:12px; border:1px solid #e2e8f0; margin-top:5px; box-sizing: border-box; font-family: inherit; background-color: #f1f5f9; color: #64748b;">
+                <option value="" disabled selected>اختر المعلم...</option>
+            </select>
+            <label style="display:block; text-align:right; margin-top: 15px;">المادة:</label>
+            <input type="text" id="fpTeacherSubject" readonly placeholder="تظهر المادة تلقائياً"
+                style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; margin-top:5px; background-color: #f1f5f9; color: #64748b; margin-bottom: 15px;">
+            
+            <label style="display:block; text-align:right; margin-top: 15px;">كلمة المرور:</label>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <input type="text" id="fpRetrievedPassword" readonly placeholder="ستظهر هنا..."
+                    style="width:100%; padding:10px; border-radius:8px; border:1px solid #e2e8f0; background-color: #f1f5f9; color: #64748b;" dir="ltr">
+                <button id="fpCopyBtn" onclick="fpCopyPassword()" style="background: var(--primary); border: none; border-radius: 8px; width: 45px; height: 42px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white;">
+                    <svg id="fpCopyIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+            </div>
+
+            <div class="btn-wrapper" style="margin-top: 20px;">
+                <button class="submit" onclick="fpGoToLogin()" data-text="تسجيل الدخول">تسجيل الدخول</button>
+            </div>
+            <div onclick="fpGoToStep1()"
+                style="margin-top:15px; cursor:pointer; color:#94a3b8;">رجوع</div>
         </div>
     </div>
 
@@ -2887,6 +2933,102 @@
         function closeResetModal() { document.getElementById("resetOverlay").style.display = "none"; }
         function openUnlockModal(label) { pendingClassLabel = label; document.getElementById("unlockText").textContent = `فتح قفل فصل ${label}`; document.getElementById("unlockOverlay").style.display = "flex"; }
         function closeUnlockModal() { document.getElementById("unlockOverlay").style.display = "none"; }
+
+        // --- استعادة كلمة المرور ---
+        function openForgotPasswordOverlay(e) {
+            e.preventDefault();
+            document.getElementById("fpEmailInput").value = "";
+            document.getElementById("fpStep1").style.display = "block";
+            document.getElementById("fpStep2").style.display = "none";
+            document.getElementById("forgotPasswordOverlay").style.display = "flex";
+            
+            const fpSelect = document.getElementById("fpTeacherName");
+            if(fpSelect.options.length <= 1) {
+                for (const teacher in teachersData) {
+                    const option = document.createElement("option");
+                    option.value = teacher;
+                    option.textContent = teacher;
+                    fpSelect.appendChild(option);
+                }
+            }
+        }
+
+        function fpGoToStep2() {
+            const email = document.getElementById("fpEmailInput").value.trim();
+            if (!email) {
+                alert("الرجاء إدخال الإيميل أولاً.");
+                return;
+            }
+            document.getElementById("fpStep1").style.display = "none";
+            document.getElementById("fpStep2").style.display = "block";
+            
+            document.getElementById("fpTeacherName").value = "";
+            document.getElementById("fpTeacherSubject").value = "";
+            document.getElementById("fpRetrievedPassword").value = "";
+            
+            const btn = document.getElementById("fpCopyBtn");
+            btn.innerHTML = '<svg id="fpCopyIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+        }
+
+        function fpGoToStep1() {
+            document.getElementById("fpStep2").style.display = "none";
+            document.getElementById("fpStep1").style.display = "block";
+        }
+
+        function fpUpdateSubject() {
+            const selectedTeacher = document.getElementById("fpTeacherName").value;
+            const subjectInput = document.getElementById("fpTeacherSubject");
+            const email = document.getElementById("fpEmailInput").value.trim();
+            
+            if (selectedTeacher && teachersData[selectedTeacher]) {
+                subjectInput.value = teachersData[selectedTeacher];
+            } else {
+                subjectInput.value = "";
+            }
+            
+            let allTeachers = JSON.parse(localStorage.getItem("allTeachers") || "{}");
+            let foundPassword = "";
+            
+            for (let k in allTeachers) {
+                if (allTeachers[k].email === email && allTeachers[k].name === selectedTeacher) {
+                    foundPassword = allTeachers[k].password;
+                    break;
+                }
+            }
+            
+            if(!foundPassword) {
+                 for (let k in allTeachers) {
+                    if (allTeachers[k].email === email) {
+                        foundPassword = allTeachers[k].password;
+                        break;
+                    }
+                }
+            }
+            
+            if (foundPassword) {
+                document.getElementById("fpRetrievedPassword").value = foundPassword;
+            } else {
+                document.getElementById("fpRetrievedPassword").value = "لا توجد بيانات مسجلة في الذاكرة";
+            }
+            
+            const btn = document.getElementById("fpCopyBtn");
+            btn.innerHTML = '<svg id="fpCopyIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+        }
+
+        function fpCopyPassword() {
+            const pw = document.getElementById("fpRetrievedPassword").value;
+            if (pw && pw !== "لا توجد بيانات مسجلة في الذاكرة") {
+                navigator.clipboard.writeText(pw).then(() => {
+                    const btn = document.getElementById("fpCopyBtn");
+                    btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+                });
+            }
+        }
+
+        function fpGoToLogin() {
+            document.getElementById("forgotPasswordOverlay").style.display = "none";
+            document.getElementById("loginEmail").focus();
+        }
 
         function openTeacherAbsenceRecord() {
             forceCloseMenu();
