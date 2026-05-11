@@ -1893,13 +1893,16 @@
     <div id="resetOverlay" class="overlay">
         <div class="modal-card">
             <h3>⚙️ إعدادات الضبط</h3>
-            <p>أدخل كلمة مرور النظام للتصفير الشامل</p>
+            <p>أدخل كلمة مرور النظام للتصفير</p>
             <div class="code-inputs" dir="ltr" id="resetCodeInputs">
                 <input type="password" maxlength="1" inputmode="numeric"><input type="password" maxlength="1"
                     inputmode="numeric"><input type="password" maxlength="1" inputmode="numeric"><input type="password"
                     maxlength="1" inputmode="numeric">
             </div>
-            <div class="btn-normal" onclick="confirmReset()" style="background:var(--danger);">تأكيد المسح</div>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                <div class="btn-normal" onclick="confirmReset()" style="background:#f59e0b; color:white; margin:0; padding: 10px 15px;">تصفير اليوم</div>
+                <div class="btn-normal" onclick="confirmFullReset()" style="background:#ef4444; color:white; margin:0; padding: 10px 15px;">مسح الذاكرة كاملة</div>
+            </div>
             <div onclick="closeResetModal()" style="margin-top:15px; cursor:pointer; color:#94a3b8;">إلغاء</div>
         </div>
     </div>
@@ -3583,9 +3586,23 @@
             if (code === "0000") {
                 localStorage.removeItem("completedClasses");
                 localStorage.removeItem("currentSessionAbsence");
+                alert("تم تصفير سجل اليوم بنجاح.");
                 location.reload();
             } else {
-                alert("❌ خطأ");
+                alert("❌ كلمة المرور خاطئة");
+            }
+        }
+
+        function confirmFullReset() {
+            const code = Array.from(document.querySelectorAll("#resetCodeInputs input")).map(i => i.value).join("");
+            if (code === "0000") {
+                if(confirm("هل أنت متأكد من مسح الذاكرة المحلية بالكامل؟ سيتم مسح جميع بيانات النظام والمعلمين!")) {
+                    localStorage.clear();
+                    alert("تم مسح الذاكرة المحلية بالكامل بنجاح!");
+                    location.reload();
+                }
+            } else {
+                alert("❌ كلمة المرور خاطئة");
             }
         }
 
