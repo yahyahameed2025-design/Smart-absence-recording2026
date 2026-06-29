@@ -1463,6 +1463,67 @@
             backdrop-filter: blur(16px) !important;
         }
 
+        .chat-widget.open {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100% !important;
+            bottom: 0 !important;
+            right: 0 !important;
+            border-radius: 0 !important;
+            z-index: 20000 !important;
+            margin: 0 !important;
+            border: none !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .chat-widget.open .chat-body {
+            display: flex !important;
+            flex: 1 !important;
+            height: calc(100% - 50px) !important;
+        }
+
+        .chat-attachment-bar {
+            background: rgba(30, 41, 59, 0.9) !important;
+            border-top: 1px solid var(--glass-border) !important;
+            padding: 15px !important;
+            display: none;
+            justify-content: space-around !important;
+            align-items: center !important;
+            gap: 15px !important;
+        }
+        
+        .attachment-option {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            cursor: pointer !important;
+            font-weight: bold !important;
+            font-size: 13px !important;
+            gap: 5px !important;
+            transition: transform 0.2s !important;
+        }
+
+        .attachment-option:hover {
+            transform: scale(1.1) !important;
+        }
+        
+        .attachment-option-circle {
+            background: rgba(15, 23, 42, 0.8) !important;
+            border: 1px solid var(--glass-border) !important;
+            width: 45px !important;
+            height: 45px !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            font-size: 22px !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+        }
+
         .chat-header {
             background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
             color: #020617 !important;
@@ -1662,7 +1723,7 @@
             المؤسس (واتساب)</div>
         <div class="menu-item problem-btn" onclick="openReportProblemModal()">⚠️ لدي مشكلة</div>
         <div class="menu-item info-btn" onclick="openAboutModal()">📄 نبذة عن النظام</div>
-        <div class="menu-item" onclick="openResetModal()" style="background:#fff7ed; color:#ea580c;">⚙️ ضبط المصنع</div>
+        <div class="menu-item" id="factoryResetBtn" onclick="openResetModal()" style="background:#fff7ed; color:#ea580c; display: none;">⚙️ ضبط المصنع</div>
 
         <!-- قسم تغيير المظهر -->
         <div style="text-align: center; margin-top: 20px; padding-bottom: 20px; border-bottom: 1px solid #e2e8f0;">
@@ -1779,6 +1840,7 @@
         <div id="welcome" style="display:none;">
             <h2>🏫 اختر الفصل</h2>
             <div id="main" class="grid"></div>
+            <div class="btn-normal" id="welcomeBackBtn" style="margin-top:20px;">⬅ رجوع للخلف</div>
         </div>
 
         <div id="submenu" style="display:none;">
@@ -1982,7 +2044,10 @@
     <!-- نافذة الدردشة مع الإدارة -->
     <div id="chatWidget" class="chat-widget">
         <div class="chat-header" onclick="toggleChat()">
-            <div>💬 المحادثة مع الإدارة</div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span id="chatBackIcon" style="display: none; font-size: 18px;">➡️</span>
+                <span>💬 المحادثة مع الإدارة</span>
+            </div>
             <span id="unreadBadge" class="unread-badge" style="display:none;">0</span>
         </div>
         <div class="chat-body" id="chatBody">
@@ -1991,7 +2056,32 @@
                     للرد والإرسال، تأكد من ربط حساب Firebase! (وضع المعلم)
                 </div>
             </div>
+
+            <!-- Attachment bar -->
+            <div id="chatAttachmentBar" class="chat-attachment-bar">
+                <!-- Image attachment option -->
+                <div class="attachment-option" onclick="triggerChatFileInput('chatImagesInput')" style="color: #60a5fa !important;">
+                    <div class="attachment-option-circle">🖼️</div>
+                    <span>صورة</span>
+                </div>
+                <!-- Document attachment option -->
+                <div class="attachment-option" onclick="triggerChatFileInput('chatDocInput')" style="color: #34d399 !important;">
+                    <div class="attachment-option-circle">📄</div>
+                    <span>مستند</span>
+                </div>
+                <!-- Voice record option -->
+                <div id="voiceRecordOption" class="attachment-option" onclick="toggleVoiceRecording()" style="color: #f87171 !important;">
+                    <div id="voiceRecordIcon" class="attachment-option-circle">🎙️</div>
+                    <span id="voiceRecordLabel">صوت</span>
+                </div>
+            </div>
+
+            <!-- Hidden Inputs -->
+            <input type="file" id="chatImagesInput" accept="image/*" multiple style="display: none;" onchange="handleChatImagesSelected(event)">
+            <input type="file" id="chatDocInput" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt" style="display: none;" onchange="handleChatDocSelected(event)">
+
             <div class="chat-input-area">
+                <button id="chatAttachBtn" onclick="toggleAttachmentBar()" style="background: none !important; color: var(--primary, #4f46e5) !important; border: none !important; font-size: 20px !important; padding: 0 10px !important; margin: 0 !important; cursor: pointer !important; outline: none !important;">➕</button>
                 <input type="text" id="chatInput" placeholder="اكتب رسالتك..." onkeypress="handleChatKeyPress(event)">
                 <button onclick="sendChatMessage()">إرسال</button>
             </div>
@@ -2649,6 +2739,17 @@
             }
         }
 
+        function updateMenuVisibility() {
+            const btn = document.getElementById("factoryResetBtn");
+            if (btn) {
+                if (loggedInEmail === "yahyahameed2025@gmail.com" || loggedInTeacherName === "المؤسس يحيى حميد") {
+                    btn.style.display = "block";
+                } else {
+                    btn.style.display = "none";
+                }
+            }
+        }
+
         // --- فحص تسجيل الدخول السابق ---
         window.onload = () => {
             populateTeachers(); // ملء قائمة المعلمين
@@ -2709,6 +2810,7 @@
             } else {
                 // لا يوجد معلم مسجل، سيتم عرض نموذج تسجيل الدخول
             }
+            updateMenuVisibility();
         };
 
         // --- معالجة تسجيل الدخول بالتصميم الجديد ---
@@ -2724,6 +2826,7 @@
                 localStorage.setItem("teacherInfo", JSON.stringify({ name: name, subject: subject, email: loggedInEmail, password: loggedInPassword }));
                 loggedInTeacherName = name;
                 loggedInTeacherSubject = subject;
+                updateMenuVisibility();
 
                 document.getElementById("login").style.display = "none";
                 document.getElementById("returningTeacherWelcome").style.display = "block";
@@ -2775,6 +2878,7 @@
 
                 loggedInTeacherName = foundTeacher.name;
                 loggedInTeacherSubject = foundTeacher.subject;
+                updateMenuVisibility();
 
                 // تحديث المعلم الحالي
                 localStorage.setItem("teacherInfo", JSON.stringify(foundTeacher));
@@ -3353,6 +3457,7 @@
                 // حفظ الاسم في المتغير العالمي واستكمال العملية
                 loggedInTeacherName = name;
                 loggedInTeacherSubject = subject;
+                updateMenuVisibility();
 
                 document.getElementById("teacherInfoSetup").style.display = "none";
                 document.getElementById("returningTeacherWelcome").style.display = "block";
@@ -3378,6 +3483,7 @@
 
                 loggedInTeacherName = name;
                 loggedInTeacherSubject = subject;
+                updateMenuVisibility();
 
                 document.getElementById("teacherInfoSetup").style.display = "none";
                 document.getElementById("returningTeacherWelcome").style.display = "block";
@@ -3570,6 +3676,14 @@
             document.getElementById("welcome").style.display = "block";
         };
 
+        document.getElementById("welcomeBackBtn").onclick = () => {
+            document.getElementById("welcome").style.display = "none";
+            document.getElementById("setup").style.display = "block";
+            if (document.getElementById("chatWidget")) {
+                document.getElementById("chatWidget").style.display = "flex";
+            }
+        };
+
         function confirmUnlock() {
             const code = Array.from(document.querySelectorAll("#unlockCodeInputs input")).map(i => i.value).join("");
             if (code === "2012") {
@@ -3643,13 +3757,22 @@
                 alert("الرجاء تسجيل الدخول أولاً لتتمكن من استخدام الدردشة.");
                 return;
             }
+            const widget = document.getElementById("chatWidget");
             const body = document.getElementById("chatBody");
+            const backIcon = document.getElementById("chatBackIcon");
             isChatOpen = !isChatOpen;
-            body.style.display = isChatOpen ? "flex" : "none";
+            
             if (isChatOpen) {
+                widget.classList.add("open");
+                body.style.display = "flex";
+                if (backIcon) backIcon.style.display = "inline";
                 unreadCount = 0;
                 document.getElementById("unreadBadge").style.display = "none";
                 scrollToChatBottom();
+            } else {
+                widget.classList.remove("open");
+                body.style.display = "none";
+                if (backIcon) backIcon.style.display = "none";
             }
         }
 
@@ -3809,7 +3932,40 @@
 
             const textSpan = document.createElement("div");
             textSpan.className = "msg-text-content";
-            textSpan.textContent = msg.text;
+            
+            if (msg.fileType === "image") {
+                const img = document.createElement("img");
+                img.src = msg.fileData;
+                img.style.maxWidth = "200px";
+                img.style.maxHeight = "200px";
+                img.style.borderRadius = "8px";
+                img.style.display = "block";
+                img.style.cursor = "pointer";
+                img.onclick = () => window.open(msg.fileData);
+                textSpan.appendChild(img);
+            } else if (msg.fileType === "document") {
+                const link = document.createElement("a");
+                link.href = msg.fileData;
+                link.download = msg.fileName || "document";
+                link.style.color = isMine ? "#0f172a" : "#60a5fa";
+                link.style.fontWeight = "bold";
+                link.style.display = "flex";
+                link.style.alignItems = "center";
+                link.style.gap = "5px";
+                link.style.textDecoration = "underline";
+                link.innerHTML = "📄 " + (msg.fileName || "تحميل المستند");
+                textSpan.appendChild(link);
+            } else if (msg.fileType === "audio") {
+                const audio = document.createElement("audio");
+                audio.src = msg.fileData;
+                audio.controls = true;
+                audio.style.maxWidth = "200px";
+                audio.style.display = "block";
+                textSpan.appendChild(audio);
+            } else {
+                textSpan.textContent = msg.text;
+            }
+
             if (msg.edited) {
                 const editedSpan = document.createElement("span");
                 editedSpan.className = "msg-edited-badge";
@@ -3866,6 +4022,170 @@
         function scrollToChatBottom() {
             const container = document.getElementById("chatMessages");
             container.scrollTop = container.scrollHeight;
+        }
+
+        function toggleAttachmentBar() {
+            const bar = document.getElementById("chatAttachmentBar");
+            if (bar) {
+                if (bar.style.display === "none" || !bar.style.display) {
+                    bar.style.display = "flex";
+                } else {
+                    bar.style.display = "none";
+                }
+            }
+            scrollToChatBottom();
+        }
+
+        function triggerChatFileInput(id) {
+            const input = document.getElementById(id);
+            if (input) input.click();
+        }
+
+        function handleChatImagesSelected(event) {
+            const files = event.target.files;
+            if (!files || files.length === 0) return;
+
+            const senderName = loggedInTeacherName || "معلم (غير مسجل)";
+            const chatPath = "messages/" + senderName;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const base64Data = e.target.result;
+                    if (isFirebaseInitialized) {
+                        firebase.database().ref(chatPath).push({
+                            text: "[صورة]",
+                            fileType: "image",
+                            fileData: base64Data,
+                            fileName: file.name,
+                            sender: senderName,
+                            role: "teacher",
+                            timestamp: firebase.database.ServerValue.TIMESTAMP
+                        });
+                    } else {
+                        appendMessageToUI("local_" + Date.now() + "_" + i, {
+                            text: "[صورة]",
+                            fileType: "image",
+                            fileData: base64Data,
+                            fileName: file.name,
+                            sender: senderName,
+                            role: "teacher"
+                        });
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+            event.target.value = "";
+            document.getElementById("chatAttachmentBar").style.display = "none";
+        }
+
+        function handleChatDocSelected(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const senderName = loggedInTeacherName || "معلم (غير مسجل)";
+            const chatPath = "messages/" + senderName;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const base64Data = e.target.result;
+                if (isFirebaseInitialized) {
+                    firebase.database().ref(chatPath).push({
+                        text: "[مستند] " + file.name,
+                        fileType: "document",
+                        fileData: base64Data,
+                        fileName: file.name,
+                        sender: senderName,
+                        role: "teacher",
+                        timestamp: firebase.database.ServerValue.TIMESTAMP
+                    });
+                } else {
+                    appendMessageToUI("local_" + Date.now(), {
+                        text: "[مستند] " + file.name,
+                        fileType: "document",
+                        fileData: base64Data,
+                        fileName: file.name,
+                        sender: senderName,
+                        role: "teacher"
+                    });
+                }
+            };
+            reader.readAsDataURL(file);
+            event.target.value = "";
+            document.getElementById("chatAttachmentBar").style.display = "none";
+        }
+
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let isRecording = false;
+
+        function toggleVoiceRecording() {
+            if (!isRecording) {
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                    alert("المتصفح لا يدعم تسجيل الصوت.");
+                    return;
+                }
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(stream => {
+                        mediaRecorder = new MediaRecorder(stream);
+                        audioChunks = [];
+
+                        mediaRecorder.addEventListener("dataavailable", event => {
+                            audioChunks.push(event.data);
+                        });
+
+                        mediaRecorder.addEventListener("stop", () => {
+                            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                const base64Data = e.target.result;
+                                const senderName = loggedInTeacherName || "معلم (غير مسجل)";
+                                const chatPath = "messages/" + senderName;
+
+                                if (isFirebaseInitialized) {
+                                    firebase.database().ref(chatPath).push({
+                                        text: "[تسجيل صوتي]",
+                                        fileType: "audio",
+                                        fileData: base64Data,
+                                        sender: senderName,
+                                        role: "teacher",
+                                        timestamp: firebase.database.ServerValue.TIMESTAMP
+                                    });
+                                } else {
+                                    appendMessageToUI("local_" + Date.now(), {
+                                        text: "[تسجيل صوتي]",
+                                        fileType: "audio",
+                                        fileData: base64Data,
+                                        sender: senderName,
+                                        role: "teacher"
+                                    });
+                                }
+                            };
+                            reader.readAsDataURL(audioBlob);
+                            stream.getTracks().forEach(track => track.stop());
+                        });
+
+                        mediaRecorder.start();
+                        isRecording = true;
+                        
+                        document.getElementById("voiceRecordLabel").textContent = "إيقاف وحفظ";
+                        document.getElementById("voiceRecordIcon").textContent = "🛑";
+                        document.getElementById("voiceRecordOption").style.setProperty("color", "#ef4444", "important");
+                    })
+                    .catch(err => {
+                        alert("عذراً، لم نتمكن من الوصول للميكروفون: " + err);
+                    });
+            } else {
+                if (mediaRecorder && mediaRecorder.state !== "inactive") {
+                    mediaRecorder.stop();
+                }
+                isRecording = false;
+                document.getElementById("voiceRecordLabel").textContent = "صوت";
+                document.getElementById("voiceRecordIcon").textContent = "🎙️";
+                document.getElementById("voiceRecordOption").style.setProperty("color", "#f87171", "important");
+                document.getElementById("chatAttachmentBar").style.display = "none";
+            }
         }
     </script>
 
