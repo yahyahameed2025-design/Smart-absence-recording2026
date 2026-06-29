@@ -2975,27 +2975,6 @@
                 initBouncingButtons();
                 return;
             }
-
-                if (document.getElementById("welcomeMsg")) {
-                    document.getElementById("welcomeMsg").textContent = "إعدادات الحصة";
-                }
-
-                if (document.getElementById("subjectLabel")) document.getElementById("subjectLabel").style.display = "none";
-                if (document.getElementById("dropdown1")) {
-                    document.getElementById("dropdown1").style.display = "none";
-
-                    let dropdown1 = document.getElementById("dropdown1");
-                    let exists = Array.from(dropdown1.options).some(opt => opt.value === subject);
-                    if (!exists) {
-                        let newOpt = document.createElement("option");
-                        newOpt.value = subject;
-                        newOpt.textContent = subject;
-                        dropdown1.appendChild(newOpt);
-                    }
-                    dropdown1.value = subject;
-                }
-                return;
-            }
             // فحص إذا كان المعلم مسجل سابقاً بهذا الإيميل
             let allTeachers = JSON.parse(localStorage.getItem("allTeachers") || "{}");
             let foundTeacher = null;
