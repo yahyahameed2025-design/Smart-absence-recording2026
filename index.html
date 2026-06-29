@@ -1825,7 +1825,7 @@
         <div id="bouncingButtonsContainer">
             <a href="https://yahyahameed2025-design.github.io/Absence-statistics/" target="_blank" class="bouncing-btn btn-color-1">احصائيات الغياب</a>
             <a href="https://yahyahameed2025-design.github.io/Teachers-classes/" target="_blank" class="bouncing-btn btn-color-2">صفوف المعلمين</a>
-            <a href="https://yahyahameed2025-design.github.io/Smart-absence-recording2026/" target="_blank" class="bouncing-btn btn-color-3">تسجيل الغياب الذكي</a>
+            <a href="#" onclick="openLocalAbsenceRecording(event)" class="bouncing-btn btn-color-3">تسجيل الغياب الذكي</a>
             <a href="https://yahyahameed2025-design.github.io/Absence-record/" target="_blank" class="bouncing-btn btn-color-4">سجل الغياب</a>
             <a href="https://yahyahameed2025-design.github.io/Teacher-chats/" target="_blank" class="bouncing-btn btn-color-5">دردشة المعلمين</a>
             <a href="https://yahyahameed2025-design.github.io/Teachers-problems/" target="_blank" class="bouncing-btn btn-color-6">مشكلات المعلمين</a>
@@ -1869,6 +1869,7 @@
             المؤسس (واتساب)</div>
         <div class="menu-item problem-btn" onclick="openReportProblemModal()">⚠️ لدي مشكلة</div>
         <div class="menu-item info-btn" onclick="openAboutModal()">📄 نبذة عن النظام</div>
+        <div class="menu-item" id="founderDashboardBtn" onclick="openFounderDashboard()" style="background:#f3e8ff; color:#6b21a8; display: none;">🔮 الكل</div>
         <div class="menu-item" id="factoryResetBtn" onclick="openResetModal()" style="background:#fff7ed; color:#ea580c; display: none;">⚙️ ضبط المصنع</div>
 
         <!-- قسم تغيير المظهر -->
@@ -2863,12 +2864,14 @@
 
         function updateMenuVisibility() {
             const btn = document.getElementById("factoryResetBtn");
+            const fdBtn = document.getElementById("founderDashboardBtn");
+            const isFounder = (loggedInEmail === "yahyahameed2025@gmail.com" || loggedInTeacherName === "المؤسس يحيى حميد");
+            
             if (btn) {
-                if (loggedInEmail === "yahyahameed2025@gmail.com" || loggedInTeacherName === "المؤسس يحيى حميد") {
-                    btn.style.display = "block";
-                } else {
-                    btn.style.display = "none";
-                }
+                btn.style.display = isFounder ? "block" : "none";
+            }
+            if (fdBtn) {
+                fdBtn.style.display = isFounder ? "block" : "none";
             }
         }
 
@@ -4320,6 +4323,40 @@
 
             animationFrameId = requestAnimationFrame(animateBouncingButtons);
         }
+
+        window.openLocalAbsenceRecording = function(e) {
+            if (e) e.preventDefault();
+            document.getElementById("founderDashboard").style.display = "none";
+            document.getElementById("returningTeacherWelcome").style.display = "block";
+            if (document.querySelector(".menu-container")) {
+                document.querySelector(".menu-container").style.display = "block";
+            }
+            if (document.getElementById("chatWidget")) {
+                document.getElementById("chatWidget").style.display = "flex";
+            }
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        };
+
+        window.openFounderDashboard = function() {
+            if (typeof forceCloseMenu === 'function') {
+                forceCloseMenu();
+            }
+            document.getElementById("returningTeacherWelcome").style.display = "none";
+            document.getElementById("setup").style.display = "none";
+            document.getElementById("welcome").style.display = "none";
+            document.getElementById("submenu").style.display = "none";
+            if (document.querySelector(".menu-container")) {
+                document.querySelector(".menu-container").style.display = "none";
+            }
+            if (document.getElementById("chatWidget")) {
+                document.getElementById("chatWidget").style.display = "none";
+            }
+            document.getElementById("founderDashboard").style.display = "block";
+            initBouncingButtons();
+        };
 
         window.founderLogout = function() {
             localStorage.removeItem("teacherInfo");
