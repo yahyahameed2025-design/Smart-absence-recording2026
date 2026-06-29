@@ -1483,43 +1483,7 @@
             height: calc(100% - 50px) !important;
         }
 
-        .chat-attachment-bar {
-            background: rgba(30, 41, 59, 0.9) !important;
-            border-top: 1px solid var(--glass-border) !important;
-            padding: 15px !important;
-            display: none;
-            justify-content: space-around !important;
-            align-items: center !important;
-            gap: 15px !important;
-        }
-        
-        .attachment-option {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            cursor: pointer !important;
-            font-weight: bold !important;
-            font-size: 13px !important;
-            gap: 5px !important;
-            transition: transform 0.2s !important;
-        }
 
-        .attachment-option:hover {
-            transform: scale(1.1) !important;
-        }
-        
-        .attachment-option-circle {
-            background: rgba(15, 23, 42, 0.8) !important;
-            border: 1px solid var(--glass-border) !important;
-            width: 45px !important;
-            height: 45px !important;
-            border-radius: 50% !important;
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            font-size: 22px !important;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
-        }
 
         .chat-header {
             background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
@@ -1674,6 +1638,168 @@
         .star-rating label:active {
             transform: scale(0.9);
         }
+
+        /* --- Founder Dashboard Design --- */
+        #founderDashboard {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: #0d0626 !important;
+            overflow: hidden !important;
+            z-index: 99999 !important;
+            font-family: 'Tajawal', sans-serif !important;
+        }
+
+        .founder-bg-glow {
+            position: absolute !important;
+            border-radius: 50% !important;
+            filter: blur(100px) !important;
+            opacity: 0.4 !important;
+            pointer-events: none !important;
+            z-index: 0 !important;
+        }
+
+        .glow1 {
+            width: 450px !important;
+            height: 450px !important;
+            background: #7c3aed !important;
+            top: -100px !important;
+            left: -100px !important;
+            animation: floatGlow1 20s infinite alternate ease-in-out !important;
+        }
+
+        .glow2 {
+            width: 550px !important;
+            height: 550px !important;
+            background: #db2777 !important;
+            bottom: -150px !important;
+            right: -150px !important;
+            animation: floatGlow2 25s infinite alternate ease-in-out !important;
+        }
+
+        @keyframes floatGlow1 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(250px, 180px) scale(1.35); }
+        }
+
+        @keyframes floatGlow2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-280px, -220px) scale(1.25); }
+        }
+
+        .blob-container {
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: 260px !important;
+            height: 260px !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            z-index: 2 !important;
+            pointer-events: none !important;
+        }
+
+        .center-blob {
+            width: 100% !important;
+            height: 100% !important;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.75), rgba(219, 39, 119, 0.75)) !important;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% !important;
+            animation: morph-and-spin 12s linear infinite !important;
+            position: absolute !important;
+            box-shadow: 0 0 60px rgba(124, 58, 237, 0.6), inset 0 0 25px rgba(255, 255, 255, 0.3) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .blob-text {
+            position: relative !important;
+            color: #ffffff !important;
+            font-weight: 900 !important;
+            font-size: 24px !important;
+            text-align: center !important;
+            line-height: 1.4 !important;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5) !important;
+            z-index: 3 !important;
+        }
+
+        @keyframes morph-and-spin {
+            0% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+                transform: rotate(0deg);
+            }
+            25% {
+                border-radius: 58% 42% 75% 25% / 45% 62% 38% 55%;
+            }
+            50% {
+                border-radius: 40% 60% 35% 65% / 50% 40% 60% 50%;
+                transform: rotate(180deg);
+            }
+            75% {
+                border-radius: 70% 30% 52% 48% / 60% 30% 70% 40%;
+            }
+            100% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+                transform: rotate(360deg);
+            }
+        }
+
+        .bouncing-btn {
+            position: absolute !important;
+            padding: 16px 28px !important;
+            border-radius: 50px !important;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            font-weight: 800 !important;
+            font-size: 16px !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.25) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            white-space: nowrap !important;
+            z-index: 10 !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+            cursor: pointer !important;
+            display: inline-block !important;
+        }
+
+        .bouncing-btn:hover {
+            transform: scale(1.15) !important;
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.6) !important;
+            z-index: 100 !important;
+        }
+
+        .btn-color-1 { background: linear-gradient(135deg, #a855f7, #6b21a8) !important; }
+        .btn-color-2 { background: linear-gradient(135deg, #ec4899, #be185d) !important; }
+        .btn-color-3 { background: linear-gradient(135deg, #6366f1, #312e81) !important; }
+        .btn-color-4 { background: linear-gradient(135deg, #06b6d4, #0369a1) !important; }
+        .btn-color-5 { background: linear-gradient(135deg, #10b981, #065f46) !important; }
+        .btn-color-6 { background: linear-gradient(135deg, #f59e0b, #9a3412) !important; }
+        .btn-color-7 { background: linear-gradient(135deg, #ef4444, #991b1b) !important; }
+
+        .founder-logout-btn {
+            position: absolute !important;
+            bottom: 25px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            background: rgba(239, 68, 68, 0.2) !important;
+            border: 1px solid rgba(239, 68, 68, 0.4) !important;
+            color: #fca5a5 !important;
+            padding: 12px 30px !important;
+            border-radius: 30px !important;
+            font-size: 15px !important;
+            font-weight: bold !important;
+            cursor: pointer !important;
+            z-index: 20 !important;
+            transition: all 0.3s !important;
+            backdrop-filter: blur(8px) !important;
+        }
+
+        .founder-logout-btn:hover {
+            background: rgba(239, 68, 68, 0.6) !important;
+            color: white !important;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4) !important;
+        }
     </style>
 
     <!-- إضافة مكتبات Firebase -->
@@ -1685,6 +1811,29 @@
 
     <!-- خلفية الجسيمات التفاعلية -->
     <canvas id="bg-canvas"></canvas>
+
+    <!-- واجهة المؤسس يحيى حميد -->
+    <div id="founderDashboard" style="display:none;">
+        <div class="founder-bg-glow glow1"></div>
+        <div class="founder-bg-glow glow2"></div>
+        
+        <div class="blob-container">
+            <div class="center-blob"></div>
+            <div class="blob-text">بوابة<br>المؤسس يحيى</div>
+        </div>
+        
+        <div id="bouncingButtonsContainer">
+            <a href="https://yahyahameed2025-design.github.io/Absence-statistics/" target="_blank" class="bouncing-btn btn-color-1">احصائيات الغياب</a>
+            <a href="https://yahyahameed2025-design.github.io/Teachers-classes/" target="_blank" class="bouncing-btn btn-color-2">صفوف المعلمين</a>
+            <a href="https://yahyahameed2025-design.github.io/Smart-absence-recording2026/" target="_blank" class="bouncing-btn btn-color-3">تسجيل الغياب الذكي</a>
+            <a href="https://yahyahameed2025-design.github.io/Absence-record/" target="_blank" class="bouncing-btn btn-color-4">سجل الغياب</a>
+            <a href="https://yahyahameed2025-design.github.io/Teacher-chats/" target="_blank" class="bouncing-btn btn-color-5">دردشة المعلمين</a>
+            <a href="https://yahyahameed2025-design.github.io/Teachers-problems/" target="_blank" class="bouncing-btn btn-color-6">مشكلات المعلمين</a>
+            <a href="https://yahyahameed2025-design.github.io/Site-reviews/" target="_blank" class="bouncing-btn btn-color-7">تقييمات المعلمين</a>
+        </div>
+        
+        <button class="founder-logout-btn" onclick="founderLogout()">🚪 تسجيل الخروج</button>
+    </div>
 
     <div class="menu-container">
         <input type="checkbox" id="checkbox" onchange="toggleMenu()">
@@ -2054,31 +2203,7 @@
                 </div>
             </div>
 
-            <!-- Attachment bar -->
-            <div id="chatAttachmentBar" class="chat-attachment-bar">
-                <!-- Image attachment option -->
-                <div class="attachment-option" onclick="triggerChatFileInput('chatImagesInput')" style="color: #60a5fa !important;">
-                    <div class="attachment-option-circle">🖼️</div>
-                    <span>صورة</span>
-                </div>
-                <!-- Document attachment option -->
-                <div class="attachment-option" onclick="triggerChatFileInput('chatDocInput')" style="color: #34d399 !important;">
-                    <div class="attachment-option-circle">📄</div>
-                    <span>مستند</span>
-                </div>
-                <!-- Voice record option -->
-                <div id="voiceRecordOption" class="attachment-option" onclick="toggleVoiceRecording()" style="color: #f87171 !important;">
-                    <div id="voiceRecordIcon" class="attachment-option-circle">🎙️</div>
-                    <span id="voiceRecordLabel">صوت</span>
-                </div>
-            </div>
-
-            <!-- Hidden Inputs -->
-            <input type="file" id="chatImagesInput" accept="image/*" multiple style="display: none;" onchange="handleChatImagesSelected(event)">
-            <input type="file" id="chatDocInput" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt" style="display: none;" onchange="handleChatDocSelected(event)">
-
             <div class="chat-input-area">
-                <button id="chatAttachBtn" onclick="toggleAttachmentBar()" style="background: none !important; color: var(--primary, #4f46e5) !important; border: none !important; font-size: 20px !important; padding: 0 10px !important; margin: 0 !important; cursor: pointer !important; outline: none !important;">➕</button>
                 <input type="text" id="chatInput" placeholder="اكتب رسالتك..." onkeypress="handleChatKeyPress(event)">
                 <button onclick="sendChatMessage()">إرسال</button>
             </div>
@@ -2789,6 +2914,20 @@
                 teacherSelect.value = loggedInTeacherName;
                 document.getElementById("teacherSubject").value = loggedInTeacherSubject;
 
+                if (loggedInTeacherName === "المؤسس يحيى حميد") {
+                    document.getElementById("login").style.display = "none";
+                    document.getElementById("founderDashboard").style.display = "block";
+                    if (document.querySelector(".menu-container")) {
+                        document.querySelector(".menu-container").style.display = "none";
+                    }
+                    if (document.getElementById("chatWidget")) {
+                        document.getElementById("chatWidget").style.display = "none";
+                    }
+                    initBouncingButtons();
+                    updateMenuVisibility();
+                    return;
+                }
+
                 // الانتقال لشاشة الترحيب الخاصة بالمعلمين المسجلين مسبقاً
                 document.getElementById("login").style.display = "none";
                 document.getElementById("returningTeacherWelcome").style.display = "block";
@@ -2826,11 +2965,16 @@
                 updateMenuVisibility();
 
                 document.getElementById("login").style.display = "none";
-                document.getElementById("returningTeacherWelcome").style.display = "block";
-                document.querySelector(".menu-container").style.display = "block";
-                if (document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
-                checkCompleteDataStatus();
-                document.getElementById("returningWelcomeMsg").textContent = "مرحباً أ/ " + loggedInTeacherName;
+                document.getElementById("founderDashboard").style.display = "block";
+                if (document.querySelector(".menu-container")) {
+                    document.querySelector(".menu-container").style.display = "none";
+                }
+                if (document.getElementById("chatWidget")) {
+                    document.getElementById("chatWidget").style.display = "none";
+                }
+                initBouncingButtons();
+                return;
+            }
 
                 if (document.getElementById("welcomeMsg")) {
                     document.getElementById("welcomeMsg").textContent = "إعدادات الحصة";
@@ -3930,38 +4074,7 @@
             const textSpan = document.createElement("div");
             textSpan.className = "msg-text-content";
             
-            if (msg.fileType === "image") {
-                const img = document.createElement("img");
-                img.src = msg.fileData;
-                img.style.maxWidth = "200px";
-                img.style.maxHeight = "200px";
-                img.style.borderRadius = "8px";
-                img.style.display = "block";
-                img.style.cursor = "pointer";
-                img.onclick = () => window.open(msg.fileData);
-                textSpan.appendChild(img);
-            } else if (msg.fileType === "document") {
-                const link = document.createElement("a");
-                link.href = msg.fileData;
-                link.download = msg.fileName || "document";
-                link.style.color = "inherit";
-                link.style.fontWeight = "bold";
-                link.style.display = "flex";
-                link.style.alignItems = "center";
-                link.style.gap = "5px";
-                link.style.textDecoration = "underline";
-                link.innerHTML = "📄 " + (msg.fileName || "تحميل المستند");
-                textSpan.appendChild(link);
-            } else if (msg.fileType === "audio") {
-                const audio = document.createElement("audio");
-                audio.src = msg.fileData;
-                audio.controls = true;
-                audio.style.maxWidth = "200px";
-                audio.style.display = "block";
-                textSpan.appendChild(audio);
-            } else {
-                textSpan.textContent = msg.text;
-            }
+            textSpan.textContent = msg.text;
 
             if (msg.edited) {
                 const editedSpan = document.createElement("span");
@@ -4021,169 +4134,6 @@
             container.scrollTop = container.scrollHeight;
         }
 
-        function toggleAttachmentBar() {
-            const bar = document.getElementById("chatAttachmentBar");
-            if (bar) {
-                if (bar.style.display === "none" || !bar.style.display) {
-                    bar.style.display = "flex";
-                } else {
-                    bar.style.display = "none";
-                }
-            }
-            scrollToChatBottom();
-        }
-
-        function triggerChatFileInput(id) {
-            const input = document.getElementById(id);
-            if (input) input.click();
-        }
-
-        function handleChatImagesSelected(event) {
-            const files = event.target.files;
-            if (!files || files.length === 0) return;
-
-            const senderName = loggedInTeacherName || "معلم (غير مسجل)";
-            const chatPath = "messages/" + senderName;
-
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const base64Data = e.target.result;
-                    if (isFirebaseInitialized) {
-                        firebase.database().ref(chatPath).push({
-                            text: "[صورة]",
-                            fileType: "image",
-                            fileData: base64Data,
-                            fileName: file.name,
-                            sender: senderName,
-                            role: "teacher",
-                            timestamp: firebase.database.ServerValue.TIMESTAMP
-                        });
-                    } else {
-                        appendMessageToUI("local_" + Date.now() + "_" + i, {
-                            text: "[صورة]",
-                            fileType: "image",
-                            fileData: base64Data,
-                            fileName: file.name,
-                            sender: senderName,
-                            role: "teacher"
-                        });
-                    }
-                };
-                reader.readAsDataURL(file);
-            }
-            event.target.value = "";
-            document.getElementById("chatAttachmentBar").style.display = "none";
-        }
-
-        function handleChatDocSelected(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const senderName = loggedInTeacherName || "معلم (غير مسجل)";
-            const chatPath = "messages/" + senderName;
-
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const base64Data = e.target.result;
-                if (isFirebaseInitialized) {
-                    firebase.database().ref(chatPath).push({
-                        text: "[مستند] " + file.name,
-                        fileType: "document",
-                        fileData: base64Data,
-                        fileName: file.name,
-                        sender: senderName,
-                        role: "teacher",
-                        timestamp: firebase.database.ServerValue.TIMESTAMP
-                    });
-                } else {
-                    appendMessageToUI("local_" + Date.now(), {
-                        text: "[مستند] " + file.name,
-                        fileType: "document",
-                        fileData: base64Data,
-                        fileName: file.name,
-                        sender: senderName,
-                        role: "teacher"
-                    });
-                }
-            };
-            reader.readAsDataURL(file);
-            event.target.value = "";
-            document.getElementById("chatAttachmentBar").style.display = "none";
-        }
-
-        let mediaRecorder = null;
-        let audioChunks = [];
-        let isRecording = false;
-
-        function toggleVoiceRecording() {
-            if (!isRecording) {
-                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                    alert("المتصفح لا يدعم تسجيل الصوت.");
-                    return;
-                }
-                navigator.mediaDevices.getUserMedia({ audio: true })
-                    .then(stream => {
-                        mediaRecorder = new MediaRecorder(stream);
-                        audioChunks = [];
-
-                        mediaRecorder.addEventListener("dataavailable", event => {
-                            audioChunks.push(event.data);
-                        });
-
-                        mediaRecorder.addEventListener("stop", () => {
-                            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-                            const reader = new FileReader();
-                            reader.onload = function (e) {
-                                const base64Data = e.target.result;
-                                const senderName = loggedInTeacherName || "معلم (غير مسجل)";
-                                const chatPath = "messages/" + senderName;
-
-                                if (isFirebaseInitialized) {
-                                    firebase.database().ref(chatPath).push({
-                                        text: "[تسجيل صوتي]",
-                                        fileType: "audio",
-                                        fileData: base64Data,
-                                        sender: senderName,
-                                        role: "teacher",
-                                        timestamp: firebase.database.ServerValue.TIMESTAMP
-                                    });
-                                } else {
-                                    appendMessageToUI("local_" + Date.now(), {
-                                        text: "[تسجيل صوتي]",
-                                        fileType: "audio",
-                                        fileData: base64Data,
-                                        sender: senderName,
-                                        role: "teacher"
-                                    });
-                                }
-                            };
-                            reader.readAsDataURL(audioBlob);
-                            stream.getTracks().forEach(track => track.stop());
-                        });
-
-                        mediaRecorder.start();
-                        isRecording = true;
-                        
-                        document.getElementById("voiceRecordLabel").textContent = "إيقاف وحفظ";
-                        document.getElementById("voiceRecordIcon").textContent = "🛑";
-                        document.getElementById("voiceRecordOption").style.setProperty("color", "#ef4444", "important");
-                    })
-                    .catch(err => {
-                        alert("عذراً، لم نتمكن من الوصول للميكروفون: " + err);
-                    });
-            } else {
-                if (mediaRecorder && mediaRecorder.state !== "inactive") {
-                    mediaRecorder.stop();
-                }
-                isRecording = false;
-                document.getElementById("voiceRecordLabel").textContent = "صوت";
-                document.getElementById("voiceRecordIcon").textContent = "🎙️";
-                document.getElementById("voiceRecordOption").style.setProperty("color", "#f87171", "important");
-                document.getElementById("chatAttachmentBar").style.display = "none";
-            }
-        }
     </script>
 
     <!-- شريط الحقوق السفلي -->
@@ -4288,6 +4238,139 @@
         function closeDownloadAppModal() {
             document.getElementById("downloadAppModal").style.display = "none";
         }
+    </script>
+
+    <script>
+        let bouncingBtns = [];
+        let animationFrameId = null;
+
+        window.initBouncingButtons = function() {
+            // Cancel previous frame if any
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+
+            const btns = document.querySelectorAll(".bouncing-btn");
+            bouncingBtns = [];
+
+            const winW = window.innerWidth;
+            const winH = window.innerHeight;
+
+            btns.forEach((btn, index) => {
+                const rect = btn.getBoundingClientRect();
+                const w = btn.offsetWidth || rect.width || 150;
+                const h = btn.offsetHeight || rect.height || 50;
+
+                // Random spawn positions, avoiding center area (blob is 260x260)
+                let x = Math.random() * (winW - w - 40) + 20;
+                let y = Math.random() * (winH - h - 120) + 60;
+
+                // If spawned in center region, offset it
+                const centerX = winW / 2;
+                const centerY = winH / 2;
+                const distToCenter = Math.hypot(x + w/2 - centerX, y + h/2 - centerY);
+                if (distToCenter < 240) {
+                    // Push outwards
+                    const angle = Math.random() * Math.PI * 2;
+                    x = centerX + Math.cos(angle) * 250 - w/2;
+                    y = centerY + Math.sin(angle) * 250 - h/2;
+                }
+
+                // Random velocities
+                const speed = 1.0 + Math.random() * 1.5;
+                const angle = Math.random() * Math.PI * 2;
+                let vx = Math.cos(angle) * speed;
+                let vy = Math.sin(angle) * speed;
+
+                let hovered = false;
+                btn.onmouseenter = () => { hovered = true; };
+                btn.onmouseleave = () => { hovered = false; };
+
+                bouncingBtns.push({
+                    el: btn,
+                    x: x,
+                    y: y,
+                    w: w,
+                    h: h,
+                    vx: vx,
+                    vy: vy,
+                    getHovered: () => hovered
+                });
+            });
+
+            animateBouncingButtons();
+        }
+
+        function animateBouncingButtons() {
+            const winW = window.innerWidth;
+            const winH = window.innerHeight;
+
+            bouncingBtns.forEach(btn => {
+                if (btn.getHovered()) {
+                    btn.w = btn.el.offsetWidth || btn.w;
+                    btn.h = btn.el.offsetHeight || btn.h;
+                    return;
+                }
+
+                btn.x += btn.vx;
+                btn.y += btn.vy;
+
+                btn.w = btn.el.offsetWidth || btn.w;
+                btn.h = btn.el.offsetHeight || btn.h;
+
+                // Bounce walls
+                if (btn.x <= 0) {
+                    btn.x = 0;
+                    btn.vx = Math.abs(btn.vx);
+                } else if (btn.x + btn.w >= winW) {
+                    btn.x = winW - btn.w;
+                    btn.vx = -Math.abs(btn.vx);
+                }
+
+                if (btn.y <= 0) {
+                    btn.y = 0;
+                    btn.vy = Math.abs(btn.vy);
+                } else if (btn.y + btn.h >= winH) {
+                    btn.y = winH - btn.h;
+                    btn.vy = -Math.abs(btn.vy);
+                }
+
+                btn.el.style.left = btn.x + "px";
+                btn.el.style.top = btn.y + "px";
+            });
+
+            animationFrameId = requestAnimationFrame(animateBouncingButtons);
+        }
+
+        window.founderLogout = function() {
+            localStorage.removeItem("teacherInfo");
+            loggedInTeacherName = "";
+            loggedInTeacherSubject = "";
+            loggedInEmail = "";
+            loggedInPassword = "";
+            
+            document.getElementById("founderDashboard").style.display = "none";
+            document.getElementById("login").style.display = "block";
+            
+            if (document.querySelector(".menu-container")) {
+                document.querySelector(".menu-container").style.display = "none";
+            }
+            if (document.getElementById("chatWidget")) {
+                document.getElementById("chatWidget").style.display = "none";
+            }
+            
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        };
+
+        window.addEventListener("resize", () => {
+            const fd = document.getElementById("founderDashboard");
+            if (fd && fd.style.display === "block") {
+                initBouncingButtons();
+            }
+        });
     </script>
 </body>
 
