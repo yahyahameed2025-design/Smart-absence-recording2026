@@ -8,6 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>نظام تسجيل الغياب الذكي - النسخة التحليلية</title>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <style>
         * {
             -webkit-text-size-adjust: none !important;
@@ -1800,6 +1801,223 @@
             color: white !important;
             box-shadow: 0 0 15px rgba(239, 68, 68, 0.4) !important;
         }
+
+        /* --- OTP Verification Page CSS --- */
+        .otp-container {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+            min-height: 400px !important;
+            padding: 20px !important;
+            box-sizing: border-box !important;
+        }
+
+        .otp-card {
+            background: var(--glass-bg, rgba(30, 41, 59, 0.7)) !important;
+            border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.08)) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border-radius: 24px !important;
+            padding: 40px 30px !important;
+            width: 100% !important;
+            max-width: 400px !important;
+            text-align: center !important;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        .otp-title {
+            color: var(--text-main, #ffffff) !important;
+            font-size: 24px !important;
+            font-weight: 800 !important;
+            margin-bottom: 10px !important;
+        }
+
+        .otp-subtitle {
+            color: #94a3b8 !important;
+            font-size: 14px !important;
+            line-height: 1.6 !important;
+            margin-bottom: 30px !important;
+        }
+
+        .otp-subtitle strong {
+            color: var(--primary, #8b5cf6) !important;
+        }
+
+        .otp-inputs {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 15px !important;
+            margin-bottom: 30px !important;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .otp-box {
+            width: 55px !important;
+            height: 55px !important;
+            background: rgba(15, 23, 42, 0.6) !important;
+            border: 2px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 12px !important;
+            color: white !important;
+            font-size: 24px !important;
+            font-weight: 800 !important;
+            text-align: center !important;
+            outline: none !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .otp-box:focus {
+            border-color: var(--primary, #8b5cf6) !important;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4) !important;
+            transform: scale(1.08) !important;
+            background: rgba(139, 92, 246, 0.05) !important;
+        }
+
+        /* Flutter merge boxes animation simulation */
+        .otp-inputs.merge {
+            gap: 0px !important;
+        }
+
+        .otp-inputs.merge .otp-box {
+            border-radius: 0px !important;
+            border-color: var(--primary, #8b5cf6) !important;
+            width: 45px !important;
+            height: 55px !important;
+        }
+
+        .otp-inputs.merge .otp-box:first-child {
+            border-top-left-radius: 12px !important;
+            border-bottom-left-radius: 12px !important;
+        }
+
+        .otp-inputs.merge .otp-box:last-child {
+            border-top-right-radius: 12px !important;
+            border-bottom-right-radius: 12px !important;
+        }
+
+        .otp-loader {
+            display: none;
+            justify-content: center !important;
+            align-items: center !important;
+            margin-bottom: 20px !important;
+        }
+
+        .ring-loader {
+            width: 40px !important;
+            height: 40px !important;
+            border: 4px solid rgba(255, 255, 255, 0.1) !important;
+            border-top: 4px solid var(--primary, #8b5cf6) !important;
+            border-radius: 50% !important;
+            animation: spinRing 0.8s linear infinite !important;
+        }
+
+        @keyframes spinRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Success Checkmark styling */
+        .otp-success-circle {
+            display: none;
+            width: 80px !important;
+            height: 80px !important;
+            border-radius: 50% !important;
+            background: #10b981 !important;
+            margin: 0 auto 20px !important;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4) !important;
+            justify-content: center !important;
+            align-items: center !important;
+            animation: scaleSuccess 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both !important;
+        }
+
+        @keyframes scaleSuccess {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        .checkmark {
+            width: 48px !important;
+            height: 48px !important;
+            border-radius: 50% !important;
+            display: block !important;
+            stroke-width: 4 !important;
+            stroke: #fff !important;
+            stroke-miterlimit: 10 !important;
+            box-shadow: inset 0 0 0 #10b981 !important;
+            animation: fillCheck 0.4s ease-in-out 0.4s forwards, scaleCheck 0.3s ease-in-out 0.9s both !important;
+        }
+
+        .checkmark__circle {
+            stroke-dasharray: 166 !important;
+            stroke-dashoffset: 166 !important;
+            stroke-width: 4 !important;
+            stroke-miterlimit: 10 !important;
+            stroke: #10b981 !important;
+            fill: none !important;
+            animation: strokeCheck 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards !important;
+        }
+
+        .checkmark__check {
+            transform-origin: 50% 50% !important;
+            stroke-dasharray: 48 !important;
+            stroke-dashoffset: 48 !important;
+            stroke: #fff !important;
+            animation: strokeCheck 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards !important;
+        }
+
+        @keyframes strokeCheck {
+            100% { stroke-dashoffset: 0; }
+        }
+
+        @keyframes fillCheck {
+            100% { box-shadow: inset 0 0 0 30px #10b981; }
+        }
+
+        .otp-verify-btn {
+            background: linear-gradient(135deg, var(--primary, #8b5cf6) 0%, var(--secondary, #7c3aed) 100%) !important;
+            color: white !important;
+            border: none !important;
+            width: 100% !important;
+            padding: 14px !important;
+            border-radius: 12px !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+            cursor: pointer !important;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3) !important;
+            transition: all 0.3s !important;
+            margin-bottom: 20px !important;
+        }
+
+        .otp-verify-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 15px 25px rgba(139, 92, 246, 0.4) !important;
+        }
+
+        .otp-resend {
+            color: var(--primary, #8b5cf6) !important;
+            font-size: 14px !important;
+            font-weight: bold !important;
+            cursor: pointer !important;
+            text-decoration: underline !important;
+            margin-bottom: 15px !important;
+            display: inline-block !important;
+        }
+
+        .otp-resend:hover {
+            color: var(--secondary, #7c3aed) !important;
+        }
+
+        .otp-back-to-login {
+            color: #94a3b8 !important;
+            font-size: 13px !important;
+            cursor: pointer !important;
+        }
+
+        .otp-back-to-login:hover {
+            color: white !important;
+        }
     </style>
 
     <!-- إضافة مكتبات Firebase -->
@@ -1913,6 +2131,39 @@
                 </div>
                 <button class="form-submit" type="submit" style="width: 100%; margin-top: 10px;">دخول</button>
             </form>
+        </div>
+
+        <!-- شاشة التحقق من رمز OTP التفاعلية -->
+        <div id="otpScreen" style="display:none; justify-content: center; width: 100%;">
+            <div class="otp-card">
+                <h3 class="otp-title">رمز التحقق (OTP)</h3>
+                <p class="otp-subtitle">لقد أرسلنا رمز التحقق إلى بريدك الإلكتروني:<br><strong id="otpEmailSentTo">email@domain.com</strong></p>
+                
+                <div class="otp-inputs" id="otpInputsWrapper">
+                    <input type="text" maxlength="1" class="otp-box" id="otp1" autocomplete="off" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-box" id="otp2" autocomplete="off" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-box" id="otp3" autocomplete="off" inputmode="numeric">
+                    <input type="text" maxlength="1" class="otp-box" id="otp4" autocomplete="off" inputmode="numeric">
+                </div>
+                
+                <!-- أنيميشن التحميل والنجاح -->
+                <div class="otp-loader" id="otpLoader">
+                    <div class="ring-loader"></div>
+                </div>
+
+                <div class="otp-success-circle" id="otpSuccessCircle">
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+
+                <div class="otp-footer">
+                    <button class="otp-verify-btn" onclick="verifyOTP()">تأكيد الرمز</button>
+                    <div class="otp-resend" onclick="resendOTP()">إعادة إرسال الرمز</div>
+                    <div class="otp-back-to-login" onclick="backToLoginFromOTP()">رجوع لتسجيل الدخول</div>
+                </div>
+            </div>
         </div>
 
         <div id="returningTeacherWelcome" style="display:none; text-align: center;">
@@ -2666,6 +2917,7 @@
         };
 
         const RATING_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGHVpswbJQk62_HhJFiRXHT8n71suvdcZ9yk2GTIo8lIDvA8M8q1GO9mBMwVFOmWmD/exec"; // ضع رابط جوجل سكربت الجديد هنا
+        const OTP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGHVpswbJQk62_HhJFiRXHT8n71suvdcZ9yk2GTIo8lIDvA8M8q1GO9mBMwVFOmWmD/exec"; // رابط تفعيل إرسال الإيميلات
 
         function openRatingModal() {
             forceCloseMenu();
@@ -2952,98 +3204,102 @@
             updateMenuVisibility();
         };
 
-        // --- معالجة تسجيل الدخول بالتصميم الجديد ---
+        // --- إعدادات Gmail SMTP لإرسال الـ OTP ---
+        // تنبيه هام: لكي يعمل الإرسال عبر Gmail SMTP، يجب إنشاء "كلمة مرور تطبيق" (App Password)
+        // من إعدادات الأمان في حساب جوجل الخاص بك، ولا يمكن استخدام كلمة المرور العادية للجيميل.
+        const SMTP_CONFIG = {
+            Username: "yahyahameed2025@gmail.com",  // بريدك الإلكتروني في Gmail
+            Password: "tdbhnottajjwycni",     // كلمة مرور التطبيق المكونة من 16 حرفاً من إعدادات جوجل
+            FromEmail: "yahyahameed2025@gmail.com"  // بريد المرسل (نفس بريد الجيميل)
+        };
+
+        async function sendOTPEmail(email, otp) {
+            try {
+                if (typeof Email !== 'undefined') {
+                    Email.send({
+                        Host : "smtp.gmail.com",
+                        Username : SMTP_CONFIG.Username,
+                        Password : SMTP_CONFIG.Password,
+                        To : email,
+                        From : SMTP_CONFIG.FromEmail,
+                        Subject : "🔐 رمز التحقق OTP - نظام الغياب الذكي",
+                        Body : `
+                            <div style="font-family: Arial, sans-serif; text-align: center; padding: 30px; border: 1px solid #e2e8f0; border-radius: 16px; max-width: 400px; margin: 0 auto; background-color: #faf5ff; direction: rtl;">
+                                <h2 style="color: #7c3aed; margin-bottom: 5px;">بوابة يحيى حميد الذكية</h2>
+                                <p style="color: #64748b; font-size: 14px; margin-top: 0;">نظام تسجيل الغياب والتقارير</p>
+                                <hr style="border: 0; border-top: 1px solid #f3e8ff; margin: 20px 0;">
+                                <p style="font-size: 16px; color: #334155; font-weight: bold;">رمز التحقق الخاص بك هو:</p>
+                                <div style="font-size: 38px; color: #7c3aed; font-weight: 800; letter-spacing: 8px; margin: 20px 0; background: #f3e8ff; padding: 10px; border-radius: 8px; display: inline-block; padding-left: 18px;">
+                                    ${otp}
+                                </div>
+                                <p style="color: #94a3b8; font-size: 12px; margin-top: 20px;">هذا الرمز مخصص للتحقق من هويتك وصالح للاستخدام لمرة واحدة فقط.</p>
+                            </div>
+                        `
+                    }).then(message => {
+                        console.log("SMTP.js Status:", message);
+                    });
+                } else {
+                    // Fallback to Apps Script if SMTP.js is not loaded
+                    await fetch(OTP_SCRIPT_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            action: "sendOTP",
+                            email: email,
+                            otp: otp
+                        })
+                    });
+                }
+            } catch(e) {
+                console.error("Failed to send OTP email", e);
+            }
+        }
+
         function handleCustomLogin(event) {
             event.preventDefault();
-            loggedInEmail = document.getElementById("loginEmail").value;
-            loggedInPassword = document.getElementById("loginPassword").value;
+            const emailInput = document.getElementById("loginEmail").value;
+            const passwordInput = document.getElementById("loginPassword").value;
 
-            if (loggedInEmail === "yahyahameed2025@gmail.com" && loggedInPassword === "yahya2025") {
-                const name = "المؤسس يحيى حميد";
-                const subject = "الإدارة";
-
-                localStorage.setItem("teacherInfo", JSON.stringify({ name: name, subject: subject, email: loggedInEmail, password: loggedInPassword }));
-                loggedInTeacherName = name;
-                loggedInTeacherSubject = subject;
-                updateMenuVisibility();
-
-                document.getElementById("login").style.display = "none";
-                document.getElementById("founderDashboard").style.display = "block";
-                if (document.querySelector(".menu-container")) {
-                    document.querySelector(".menu-container").style.display = "none";
-                }
-                if (document.getElementById("chatWidget")) {
-                    document.getElementById("chatWidget").style.display = "none";
-                }
-                initBouncingButtons();
-                return;
-            }
-            // فحص إذا كان المعلم مسجل سابقاً بهذا الإيميل
+            // Check if founder or existing teacher
+            let isFounder = (emailInput === "yahyahameed2025@gmail.com" && passwordInput === "yahya2025");
             let allTeachers = JSON.parse(localStorage.getItem("allTeachers") || "{}");
             let foundTeacher = null;
             let oldKey = null;
             for (let k in allTeachers) {
-                if (allTeachers[k].email === loggedInEmail) {
+                if (allTeachers[k].email === emailInput) {
                     foundTeacher = allTeachers[k];
                     oldKey = k;
                     break;
                 }
             }
 
-            if (foundTeacher) {
-                // تحديث كلمة المرور في حال تغيرت
-                foundTeacher.password = loggedInPassword;
-                if (oldKey !== loggedInEmail + "|" + loggedInPassword) {
-                    delete allTeachers[oldKey];
-                    allTeachers[loggedInEmail + "|" + loggedInPassword] = foundTeacher;
-                    localStorage.setItem("allTeachers", JSON.stringify(allTeachers));
-                }
+            const otpCode = Math.floor(1000 + Math.random() * 9000).toString();
+            window.pendingLoginData = {
+                email: emailInput,
+                password: passwordInput,
+                isFounder: isFounder,
+                foundTeacher: foundTeacher,
+                oldKey: oldKey,
+                otp: otpCode
+            };
 
-                loggedInTeacherName = foundTeacher.name;
-                loggedInTeacherSubject = foundTeacher.subject;
-                updateMenuVisibility();
+            // Send OTP
+            sendOTPEmail(emailInput, otpCode);
 
-                // تحديث المعلم الحالي
-                localStorage.setItem("teacherInfo", JSON.stringify(foundTeacher));
+            // Visual fallback alert so they can test instantly
+            alert("🔐 رمز التحقق (OTP) الخاص بك هو: " + otpCode + "\n\n(تم إرسال رسالة برمز التحقق إلى بريدك الإلكتروني أيضاً)");
 
-                document.getElementById("login").style.display = "none";
-                document.getElementById("returningTeacherWelcome").style.display = "block";
-                document.querySelector(".menu-container").style.display = "block";
-                if (document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
-                checkCompleteDataStatus();
-                document.getElementById("returningWelcomeMsg").textContent = "مرحباً أ/ " + loggedInTeacherName;
-
-                if (document.getElementById("welcomeMsg")) {
-                    document.getElementById("welcomeMsg").textContent = "إعدادات الحصة";
-                }
-
-                if (document.getElementById("subjectLabel")) document.getElementById("subjectLabel").style.display = "none";
-                if (document.getElementById("dropdown1")) {
-                    document.getElementById("dropdown1").style.display = "none";
-
-                    let dropdown1 = document.getElementById("dropdown1");
-                    let exists = Array.from(dropdown1.options).some(opt => opt.value === loggedInTeacherSubject);
-                    if (!exists) {
-                        let newOpt = document.createElement("option");
-                        newOpt.value = loggedInTeacherSubject;
-                        newOpt.textContent = loggedInTeacherSubject;
-                        dropdown1.appendChild(newOpt);
-                    }
-                    dropdown1.value = loggedInTeacherSubject;
-                }
-
-                // تحديث الدردشة إن وجدت
-                if (typeof listenToMessages === 'function') {
-                    listenToMessages();
-                }
-                return;
-            }
-
-            // إخفاء شاشة تسجيل الدخول والانتقال لشاشة إكمال بيانات المعلم
+            // Transition to OTP screen
             document.getElementById("login").style.display = "none";
-            document.getElementById("teacherInfoSetup").style.display = "block";
-            document.querySelector(".menu-container").style.display = "block";
-            if (document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
+            document.getElementById("otpScreen").style.display = "flex";
+            document.getElementById("otpEmailSentTo").textContent = emailInput;
+
+            // Reset inputs and focus
+            document.querySelectorAll(".otp-box").forEach(box => box.value = "");
+            document.getElementById("otp1").focus();
         }
 
         // دالة للمتابعة من شاشة الترحيب إلى شاشة إعداد الحصة
@@ -4387,6 +4643,156 @@
                 initBouncingButtons();
             }
         });
+
+        // --- OTP Logic & Animation ---
+        document.querySelectorAll('.otp-box').forEach((box, index, boxes) => {
+            box.addEventListener('input', (e) => {
+                const val = e.target.value;
+                if (!/^[0-9]$/.test(val)) {
+                    e.target.value = "";
+                    return;
+                }
+                if (index < boxes.length - 1) {
+                    boxes[index + 1].focus();
+                } else {
+                    // Automatically verify when all digits are filled
+                    verifyOTP();
+                }
+            });
+            box.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                    boxes[index - 1].focus();
+                }
+            });
+        });
+
+        window.verifyOTP = function() {
+            if (!window.pendingLoginData) return;
+            const digit1 = document.getElementById("otp1").value;
+            const digit2 = document.getElementById("otp2").value;
+            const digit3 = document.getElementById("otp3").value;
+            const digit4 = document.getElementById("otp4").value;
+            const entered = digit1 + digit2 + digit3 + digit4;
+
+            if (entered.length < 4) return; // Wait until all are filled
+
+            if (entered === window.pendingLoginData.otp) {
+                // Play Flutter merge & success animations!
+                const inputsWrapper = document.getElementById("otpInputsWrapper");
+                const loader = document.getElementById("otpLoader");
+                const successCircle = document.getElementById("otpSuccessCircle");
+
+                // Merge boxes
+                inputsWrapper.classList.add("merge");
+
+                // Wait for merge animation, then show loader
+                setTimeout(() => {
+                    inputsWrapper.style.display = "none";
+                    loader.style.display = "flex";
+
+                    // Wait 1s, then show success checkmark
+                    setTimeout(() => {
+                        loader.style.display = "none";
+                        successCircle.style.display = "flex";
+
+                        // Wait 1.2s, then proceed to redirect
+                        setTimeout(() => {
+                            successCircle.style.display = "none";
+                            inputsWrapper.classList.remove("merge");
+                            inputsWrapper.style.display = "flex";
+                            document.getElementById("otpScreen").style.display = "none";
+
+                            // Perform original redirection
+                            const { email, password, isFounder, foundTeacher, oldKey } = window.pendingLoginData;
+                            if (isFounder) {
+                                const name = "المؤسس يحيى حميد";
+                                const subject = "الإدارة";
+
+                                localStorage.setItem("teacherInfo", JSON.stringify({ name: name, subject: subject, email: email, password: password }));
+                                loggedInTeacherName = name;
+                                loggedInTeacherSubject = subject;
+                                updateMenuVisibility();
+
+                                document.getElementById("founderDashboard").style.display = "block";
+                                initBouncingButtons();
+                            } else if (foundTeacher) {
+                                // Existing teacher
+                                foundTeacher.password = password;
+                                if (oldKey !== email + "|" + password) {
+                                    let allTeachers = JSON.parse(localStorage.getItem("allTeachers") || "{}");
+                                    delete allTeachers[oldKey];
+                                    allTeachers[email + "|" + password] = foundTeacher;
+                                    localStorage.setItem("allTeachers", JSON.stringify(allTeachers));
+                                }
+
+                                loggedInTeacherName = foundTeacher.name;
+                                loggedInTeacherSubject = foundTeacher.subject;
+                                updateMenuVisibility();
+
+                                localStorage.setItem("teacherInfo", JSON.stringify(foundTeacher));
+
+                                document.getElementById("returningTeacherWelcome").style.display = "block";
+                                document.querySelector(".menu-container").style.display = "block";
+                                if (document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
+                                checkCompleteDataStatus();
+                                document.getElementById("returningWelcomeMsg").textContent = "مرحباً أ/ " + loggedInTeacherName;
+
+                                if (document.getElementById("welcomeMsg")) {
+                                    document.getElementById("welcomeMsg").textContent = "إعدادات الحصة";
+                                }
+
+                                if (document.getElementById("subjectLabel")) document.getElementById("subjectLabel").style.display = "none";
+                                if (document.getElementById("dropdown1")) {
+                                    document.getElementById("dropdown1").style.display = "none";
+
+                                    let dropdown1 = document.getElementById("dropdown1");
+                                    let exists = Array.from(dropdown1.options).some(opt => opt.value === loggedInTeacherSubject);
+                                    if (!exists) {
+                                        let newOpt = document.createElement("option");
+                                        newOpt.value = loggedInTeacherSubject;
+                                        newOpt.textContent = loggedInTeacherSubject;
+                                        dropdown1.appendChild(newOpt);
+                                    }
+                                    dropdown1.value = loggedInTeacherSubject;
+                                }
+
+                                if (typeof listenToMessages === 'function') {
+                                    listenToMessages();
+                                }
+                            } else {
+                                // New teacher signup setup
+                                loggedInEmail = email;
+                                loggedInPassword = password;
+                                document.getElementById("teacherInfoSetup").style.display = "block";
+                                document.querySelector(".menu-container").style.display = "block";
+                                if (document.getElementById("chatWidget")) document.getElementById("chatWidget").style.display = "flex";
+                            }
+                            window.pendingLoginData = null;
+                        }, 1200);
+                    }, 1000);
+                }, 500);
+            } else {
+                alert("رمز التحقق غير صحيح، يرجى المحاولة مرة أخرى.");
+                document.querySelectorAll(".otp-box").forEach(box => box.value = "");
+                document.getElementById("otp1").focus();
+            }
+        };
+
+        window.resendOTP = function() {
+            if (!window.pendingLoginData) return;
+            const newOtp = Math.floor(1000 + Math.random() * 9000).toString();
+            window.pendingLoginData.otp = newOtp;
+            sendOTPEmail(window.pendingLoginData.email, newOtp);
+            alert("🔐 تم إعادة إرسال رمز التحقق (OTP) الجديد: " + newOtp);
+            document.querySelectorAll(".otp-box").forEach(box => box.value = "");
+            document.getElementById("otp1").focus();
+        };
+
+        window.backToLoginFromOTP = function() {
+            document.getElementById("otpScreen").style.display = "none";
+            document.getElementById("login").style.display = "flex";
+            window.pendingLoginData = null;
+        };
     </script>
 </body>
 
