@@ -1814,190 +1814,311 @@
         }
 
         .otp-card {
-            background: var(--glass-bg, rgba(30, 41, 59, 0.7)) !important;
-            border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.08)) !important;
-            backdrop-filter: blur(16px) !important;
-            -webkit-backdrop-filter: blur(16px) !important;
-            border-radius: 24px !important;
-            padding: 40px 30px !important;
+            background: #161618 !important;
+            border-radius: 28px !important;
+            padding: 16px 24px 32px 24px !important;
             width: 100% !important;
-            max-width: 400px !important;
+            max-width: 340px !important;
             text-align: center !important;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5) !important;
             position: relative !important;
             overflow: hidden !important;
+            border: none !important;
+            transition: background-color 0.6s ease-out, box-shadow 0.6s ease-out !important;
+            box-sizing: border-box !important;
+        }
+
+        .otp-card.success {
+            background: #0d1f14 !important;
+            box-shadow: 0 0 80px rgba(74, 222, 128, 0.25) !important;
+        }
+
+        .otp-card.error {
+            box-shadow: 0 0 60px rgba(239, 68, 68, 0.22) !important;
+            animation: shakeCard 0.65s cubic-bezier(.36,.07,.19,.97) both !important;
+        }
+
+        @keyframes shakeCard {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        .otp-drag-handle {
+            width: 36px !important;
+            height: 4px !important;
+            background: rgba(255, 255, 255, 0.24) !important;
+            border-radius: 2px !important;
+            margin: 0 auto 24px auto !important;
+        }
+
+        .otp-header-container {
+            position: relative !important;
+            margin-bottom: 24px !important;
+            height: 90px !important;
+        }
+
+        .otp-header-state {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            opacity: 0 !important;
+            transform: translateY(-10px) !important;
+            transition: opacity 0.5s ease, transform 0.5s ease !important;
+            pointer-events: none !important;
+        }
+
+        .otp-header-state.active {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            pointer-events: auto !important;
         }
 
         .otp-title {
-            color: var(--text-main, #ffffff) !important;
-            font-size: 24px !important;
-            font-weight: 800 !important;
-            margin-bottom: 10px !important;
+            color: #ffffff !important;
+            font-size: 22px !important;
+            font-weight: 700 !important;
+            margin: 0 0 8px 0 !important;
+        }
+
+        .otp-title.success-text {
+            color: #4ade80 !important;
+        }
+
+        .otp-title.error-text {
+            color: #ff5252 !important;
         }
 
         .otp-subtitle {
-            color: #94a3b8 !important;
-            font-size: 14px !important;
-            line-height: 1.6 !important;
-            margin-bottom: 30px !important;
+            color: rgba(255, 255, 255, 0.38) !important;
+            font-size: 13px !important;
+            line-height: 1.5 !important;
+            margin: 0 !important;
         }
 
         .otp-subtitle strong {
-            color: var(--primary, #8b5cf6) !important;
+            color: #ff8a3d !important;
+        }
+
+        .otp-inputs-wrapper-outer {
+            position: relative !important;
+            height: 62px !important;
+            margin-bottom: 28px !important;
+            display: flex !important;
+            justify-content: center !important;
         }
 
         .otp-inputs {
             display: flex !important;
             justify-content: center !important;
-            gap: 15px !important;
-            margin-bottom: 30px !important;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            gap: 10px !important;
             direction: ltr !important;
+            transition: gap 0.75s cubic-bezier(0.4, 0, 0.2, 1), filter 0.75s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease !important;
+        }
+
+        /* Gooey blur contrast logic on merge */
+        .otp-inputs.merge {
+            gap: 0px !important;
+            filter: blur(8px) contrast(15) !important;
+        }
+
+        .otp-box-wrapper {
+            position: relative !important;
+            width: 62px !important;
+            height: 62px !important;
+            transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1) !important;
         }
 
         .otp-box {
-            width: 55px !important;
-            height: 55px !important;
-            background: rgba(15, 23, 42, 0.6) !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: #1e1e22 !important;
             border: 2px solid rgba(255, 255, 255, 0.1) !important;
-            border-radius: 12px !important;
+            border-radius: 14px !important;
             color: white !important;
-            font-size: 24px !important;
-            font-weight: 800 !important;
+            font-size: 26px !important;
+            font-weight: bold !important;
             text-align: center !important;
             outline: none !important;
+            caret-color: transparent !important;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            box-sizing: border-box !important;
         }
 
         .otp-box:focus {
-            border-color: var(--primary, #8b5cf6) !important;
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4) !important;
-            transform: scale(1.08) !important;
-            background: rgba(139, 92, 246, 0.05) !important;
+            border-color: #ff8a3d !important;
         }
 
-        /* Flutter merge boxes animation simulation */
-        .otp-inputs.merge {
-            gap: 0px !important;
+        .otp-box-wrapper:focus-within {
+            box-shadow: 0 0 20px rgba(255, 138, 61, 0.2) !important;
+            transform: scale(1.02) !important;
         }
 
-        .otp-inputs.merge .otp-box {
-            border-radius: 0px !important;
-            border-color: var(--primary, #8b5cf6) !important;
-            width: 45px !important;
-            height: 55px !important;
-        }
-
-        .otp-inputs.merge .otp-box:first-child {
-            border-top-left-radius: 12px !important;
-            border-bottom-left-radius: 12px !important;
-        }
-
-        .otp-inputs.merge .otp-box:last-child {
-            border-top-right-radius: 12px !important;
-            border-bottom-right-radius: 12px !important;
-        }
-
-        .otp-loader {
-            display: none;
-            justify-content: center !important;
-            align-items: center !important;
-            margin-bottom: 20px !important;
-        }
-
-        .ring-loader {
-            width: 40px !important;
-            height: 40px !important;
-            border: 4px solid rgba(255, 255, 255, 0.1) !important;
-            border-top: 4px solid var(--primary, #8b5cf6) !important;
-            border-radius: 50% !important;
-            animation: spinRing 0.8s linear infinite !important;
-        }
-
-        @keyframes spinRing {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Success Checkmark styling */
-        .otp-success-circle {
-            display: none;
-            width: 80px !important;
-            height: 80px !important;
-            border-radius: 50% !important;
-            background: #10b981 !important;
-            margin: 0 auto 20px !important;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4) !important;
-            justify-content: center !important;
-            align-items: center !important;
-            animation: scaleSuccess 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both !important;
-        }
-
-        @keyframes scaleSuccess {
-            0% { transform: scale(0); }
+        /* Scale animation on typing key */
+        @keyframes boxScale {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.06); }
             100% { transform: scale(1); }
         }
 
-        .checkmark {
-            width: 48px !important;
-            height: 48px !important;
-            border-radius: 50% !important;
+        .otp-box-wrapper.typed {
+            animation: boxScale 0.18s ease-out !important;
+        }
+
+        /* Blinking custom cursor */
+        .custom-cursor {
+            display: none !important;
+            position: absolute !important;
+            width: 2px !important;
+            height: 28px !important;
+            background: #ffffff !important;
+            border-radius: 1px !important;
+            top: calc(50% - 14px) !important;
+            left: calc(50% - 1px) !important;
+            animation: cursorBlink 0.6s infinite alternate !important;
+            pointer-events: none !important;
+            z-index: 3 !important;
+        }
+
+        .otp-box-wrapper:focus-within .otp-box:placeholder-shown ~ .custom-cursor {
             display: block !important;
-            stroke-width: 4 !important;
-            stroke: #fff !important;
-            stroke-miterlimit: 10 !important;
-            box-shadow: inset 0 0 0 #10b981 !important;
-            animation: fillCheck 0.4s ease-in-out 0.4s forwards, scaleCheck 0.3s ease-in-out 0.9s both !important;
         }
 
-        .checkmark__circle {
-            stroke-dasharray: 166 !important;
-            stroke-dashoffset: 166 !important;
-            stroke-width: 4 !important;
-            stroke-miterlimit: 10 !important;
-            stroke: #10b981 !important;
+        @keyframes cursorBlink {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Loading border SVGs */
+        .loading-border-svg {
+            display: none !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 62px !important;
+            height: 62px !important;
+            pointer-events: none !important;
+            z-index: 2 !important;
+        }
+
+        .loading-border-svg rect {
             fill: none !important;
-            animation: strokeCheck 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards !important;
         }
 
-        .checkmark__check {
-            transform-origin: 50% 50% !important;
+        .loading-border-svg .bg-rect {
+            stroke: rgba(255, 255, 255, 0.1) !important;
+            stroke-width: 2px !important;
+        }
+
+        .loading-border-svg .loader-rect {
+            stroke: #ff8a3d !important;
+            stroke-width: 3.2px !important;
+            stroke-linecap: round !important;
+            stroke-dasharray: 232 !important;
+            stroke-dashoffset: 180 !important;
+            animation: spinBorder 1.2s linear infinite !important;
+            transform-origin: center !important;
+        }
+
+        @keyframes spinBorder {
+            0% { stroke-dashoffset: 232; transform: rotate(0deg); }
+            100% { stroke-dashoffset: 0; transform: rotate(360deg); }
+        }
+
+        /* Loading state triggers loader SVG and hides actual borders */
+        .otp-card.loading .loading-border-svg {
+            display: block !important;
+        }
+
+        .otp-card.loading .otp-box {
+            border-color: transparent !important;
+        }
+
+        /* Error state boxes border color and background */
+        .otp-card.error .otp-box {
+            border-color: #ff5252 !important;
+            background: #2a1518 !important;
+        }
+
+        /* Merge translations (Gooey animation) */
+        .otp-inputs.merge #otpWrapper1 {
+            transform: translate(108px, -12px) rotate(10deg) scale(0.8) !important;
+            opacity: 0.5 !important;
+        }
+
+        .otp-inputs.merge #otpWrapper2 {
+            transform: translate(36px, -12px) rotate(3deg) scale(0.9) !important;
+            opacity: 0.8 !important;
+        }
+
+        .otp-inputs.merge #otpWrapper3 {
+            transform: translate(-36px, -12px) rotate(-3deg) scale(0.9) !important;
+            opacity: 0.8 !important;
+        }
+
+        .otp-inputs.merge #otpWrapper4 {
+            transform: translate(-108px, -12px) rotate(-10deg) scale(0.8) !important;
+            opacity: 0.5 !important;
+        }
+
+        /* Merged success circle checkmark */
+        .otp-merged-success {
+            position: absolute !important;
+            top: 0 !important;
+            left: calc(50% - 31px) !important;
+            width: 62px !important;
+            height: 62px !important;
+            background: #0f2418 !important;
+            border: 2px solid #4ade80 !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            transform: scale(0) !important;
+            opacity: 0 !important;
+            z-index: 10 !important;
+            box-shadow: 0 0 30px rgba(74, 222, 128, 0.4) !important;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease !important;
+        }
+
+        .otp-merged-success.active {
+            transform: scale(1.1) !important;
+            opacity: 1 !important;
+        }
+
+        .checkmark-svg {
+            width: 32px !important;
+            height: 32px !important;
+        }
+
+        .checkmark-circle {
+            stroke: #4ade80 !important;
+            stroke-width: 4px !important;
+            fill: none !important;
+        }
+
+        .checkmark-check {
+            stroke: #ffffff !important;
+            stroke-width: 4.5px !important;
+            stroke-linecap: round !important;
+            stroke-linejoin: round !important;
             stroke-dasharray: 48 !important;
             stroke-dashoffset: 48 !important;
-            stroke: #fff !important;
-            animation: strokeCheck 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards !important;
+            transition: stroke-dashoffset 0.4s ease 0.3s !important;
         }
 
-        @keyframes strokeCheck {
-            100% { stroke-dashoffset: 0; }
+        .otp-merged-success.active .checkmark-check {
+            stroke-dashoffset: 0 !important;
         }
 
-        @keyframes fillCheck {
-            100% { box-shadow: inset 0 0 0 30px #10b981; }
-        }
-
-        .otp-verify-btn {
-            background: linear-gradient(135deg, var(--primary, #8b5cf6) 0%, var(--secondary, #7c3aed) 100%) !important;
-            color: white !important;
-            border: none !important;
-            width: 100% !important;
-            padding: 14px !important;
-            border-radius: 12px !important;
-            font-size: 16px !important;
-            font-weight: bold !important;
-            cursor: pointer !important;
-            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3) !important;
-            transition: all 0.3s !important;
-            margin-bottom: 20px !important;
-        }
-
-        .otp-verify-btn:hover {
-            transform: translateY(-2px) !important;
-            box-shadow: 0 15px 25px rgba(139, 92, 246, 0.4) !important;
+        .otp-footer {
+            margin-top: 10px !important;
         }
 
         .otp-resend {
-            color: var(--primary, #8b5cf6) !important;
+            color: #ff8a3d !important;
             font-size: 14px !important;
             font-weight: bold !important;
             cursor: pointer !important;
@@ -2007,13 +2128,14 @@
         }
 
         .otp-resend:hover {
-            color: var(--secondary, #7c3aed) !important;
+            color: #ffa566 !important;
         }
 
         .otp-back-to-login {
-            color: #94a3b8 !important;
+            color: rgba(255, 255, 255, 0.38) !important;
             font-size: 13px !important;
             cursor: pointer !important;
+            transition: color 0.3s !important;
         }
 
         .otp-back-to-login:hover {
@@ -2136,32 +2258,71 @@
 
         <!-- شاشة التحقق من رمز OTP التفاعلية -->
         <div id="otpScreen" style="display:none; justify-content: center; width: 100%;">
-            <div class="otp-card">
-                <h3 class="otp-title">رمز التحقق (OTP)</h3>
-                <p class="otp-subtitle">لقد أرسلنا رمز التحقق إلى بريدك الإلكتروني:<br><strong id="otpEmailSentTo">email@domain.com</strong></p>
+            <div class="otp-card" id="otpCard">
+                <div class="otp-drag-handle"></div>
                 
-                <div class="otp-inputs" id="otpInputsWrapper">
-                    <input type="text" maxlength="1" class="otp-box" id="otp1" autocomplete="off" inputmode="numeric">
-                    <input type="text" maxlength="1" class="otp-box" id="otp2" autocomplete="off" inputmode="numeric">
-                    <input type="text" maxlength="1" class="otp-box" id="otp3" autocomplete="off" inputmode="numeric">
-                    <input type="text" maxlength="1" class="otp-box" id="otp4" autocomplete="off" inputmode="numeric">
+                <div class="otp-header-container">
+                    <div class="otp-header-state active" id="otpHeaderNormal">
+                        <h3 class="otp-title">دعنا نتحقق من رمز التحقق</h3>
+                        <p class="otp-subtitle">لقد أرسلنا رمز التحقق إلى بريدك الإلكتروني:<br><strong id="otpEmailSentTo">email@domain.com</strong><br><span style="font-size:11px;opacity:0.6;">سيتم التحقق تلقائيًا بمجرد إدخاله.</span></p>
+                    </div>
+                    <div class="otp-header-state" id="otpHeaderSuccess">
+                        <h3 class="otp-title success-text">تم التحقق بنجاح</h3>
+                        <p class="otp-subtitle">لقد تم تأكيد بريدك الإلكتروني بنجاح.</p>
+                    </div>
+                    <div class="otp-header-state" id="otpHeaderError">
+                        <h3 class="otp-title error-text">الرمز غير صحيح</h3>
+                        <p class="otp-subtitle">الرمز الذي أدخلته غير صحيح.<br>يرجى المحاولة مرة أخرى.</p>
+                    </div>
                 </div>
                 
-                <!-- أنيميشن التحميل والنجاح -->
-                <div class="otp-loader" id="otpLoader">
-                    <div class="ring-loader"></div>
-                </div>
+                <div class="otp-inputs-wrapper-outer">
+                    <div class="otp-inputs" id="otpInputsWrapper">
+                        <div class="otp-box-wrapper" id="otpWrapper1">
+                            <input type="text" maxlength="1" class="otp-box" id="otp1" autocomplete="off" inputmode="numeric" placeholder=" ">
+                            <span class="custom-cursor"></span>
+                            <svg class="loading-border-svg" viewBox="0 0 62 62">
+                                <rect class="bg-rect" x="2" y="2" width="58" height="58" rx="14"></rect>
+                                <rect class="loader-rect" x="2" y="2" width="58" height="58" rx="14"></rect>
+                            </svg>
+                        </div>
+                        <div class="otp-box-wrapper" id="otpWrapper2">
+                            <input type="text" maxlength="1" class="otp-box" id="otp2" autocomplete="off" inputmode="numeric" placeholder=" ">
+                            <span class="custom-cursor"></span>
+                            <svg class="loading-border-svg" viewBox="0 0 62 62">
+                                <rect class="bg-rect" x="2" y="2" width="58" height="58" rx="14"></rect>
+                                <rect class="loader-rect" x="2" y="2" width="58" height="58" rx="14"></rect>
+                            </svg>
+                        </div>
+                        <div class="otp-box-wrapper" id="otpWrapper3">
+                            <input type="text" maxlength="1" class="otp-box" id="otp3" autocomplete="off" inputmode="numeric" placeholder=" ">
+                            <span class="custom-cursor"></span>
+                            <svg class="loading-border-svg" viewBox="0 0 62 62">
+                                <rect class="bg-rect" x="2" y="2" width="58" height="58" rx="14"></rect>
+                                <rect class="loader-rect" x="2" y="2" width="58" height="58" rx="14"></rect>
+                            </svg>
+                        </div>
+                        <div class="otp-box-wrapper" id="otpWrapper4">
+                            <input type="text" maxlength="1" class="otp-box" id="otp4" autocomplete="off" inputmode="numeric" placeholder=" ">
+                            <span class="custom-cursor"></span>
+                            <svg class="loading-border-svg" viewBox="0 0 62 62">
+                                <rect class="bg-rect" x="2" y="2" width="58" height="58" rx="14"></rect>
+                                <rect class="loader-rect" x="2" y="2" width="58" height="58" rx="14"></rect>
+                            </svg>
+                        </div>
+                    </div>
 
-                <div class="otp-success-circle" id="otpSuccessCircle">
-                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                    </svg>
+                    <!-- Merged Success Checkmark Element -->
+                    <div class="otp-merged-success" id="otpMergedSuccess">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                            <circle class="checkmark-circle" cx="26" cy="26" r="23" fill="none"/>
+                            <path class="checkmark-check" fill="none" d="M16 26l7 7 14-14"/>
+                        </svg>
+                    </div>
                 </div>
-
+                
                 <div class="otp-footer">
-                    <button class="otp-verify-btn" onclick="verifyOTP()">تأكيد الرمز</button>
-                    <div class="otp-resend" onclick="resendOTP()">إعادة إرسال الرمز</div>
+                    <div class="otp-resend" id="otpResendBtn" onclick="resendOTP()">إعادة إرسال الرمز</div>
                     <div class="otp-back-to-login" onclick="backToLoginFromOTP()">رجوع لتسجيل الدخول</div>
                 </div>
             </div>
@@ -4654,6 +4815,13 @@
                     e.target.value = "";
                     return;
                 }
+                
+                // Scale animation class trigger
+                const wrapper = box.parentElement;
+                wrapper.classList.remove("typed");
+                void wrapper.offsetWidth; // force reflow
+                wrapper.classList.add("typed");
+
                 if (index < boxes.length - 1) {
                     boxes[index + 1].focus();
                 } else {
@@ -4678,30 +4846,52 @@
 
             if (entered.length < 4) return; // Wait until all are filled
 
-            if (entered === window.pendingLoginData.otp) {
-                // Play Flutter merge & success animations!
-                const inputsWrapper = document.getElementById("otpInputsWrapper");
-                const loader = document.getElementById("otpLoader");
-                const successCircle = document.getElementById("otpSuccessCircle");
+            // 1. Unfocus and start loading state
+            document.querySelectorAll(".otp-box").forEach(box => box.blur());
+            const card = document.getElementById("otpCard");
+            card.classList.add("loading");
 
-                // Merge boxes
-                inputsWrapper.classList.add("merge");
+            // 2. Wait for 1700ms (simulate verification process)
+            setTimeout(() => {
+                // Stop loading
+                card.classList.remove("loading");
 
-                // Wait for merge animation, then show loader
-                setTimeout(() => {
-                    inputsWrapper.style.display = "none";
-                    loader.style.display = "flex";
+                if (entered === window.pendingLoginData.otp) {
+                    // Correct!
+                    // a) Transition card background to success
+                    card.classList.add("success");
+                    
+                    // b) Switch title/subtitle to success state
+                    document.getElementById("otpHeaderNormal").classList.remove("active");
+                    document.getElementById("otpHeaderSuccess").classList.add("active");
 
-                    // Wait 1s, then show success checkmark
+                    // c) Start merge animation on input wrapper
+                    const inputsWrapper = document.getElementById("otpInputsWrapper");
+                    inputsWrapper.classList.add("merge");
+
+                    // d) Fade out the input text
+                    document.querySelectorAll(".otp-box").forEach(box => box.style.color = "transparent");
+
+                    // e) Show the merged success checkmark after merge finishes (e.g. 500ms)
                     setTimeout(() => {
-                        loader.style.display = "none";
-                        successCircle.style.display = "flex";
+                        inputsWrapper.style.opacity = "0";
+                        const mergedSuccess = document.getElementById("otpMergedSuccess");
+                        mergedSuccess.classList.add("active");
 
-                        // Wait 1.2s, then proceed to redirect
+                        // f) Proceed to redirection after another 1200ms
                         setTimeout(() => {
-                            successCircle.style.display = "none";
+                            // Reset classes
+                            mergedSuccess.classList.remove("active");
                             inputsWrapper.classList.remove("merge");
-                            inputsWrapper.style.display = "flex";
+                            inputsWrapper.style.opacity = "1";
+                            document.querySelectorAll(".otp-box").forEach(box => {
+                                box.value = "";
+                                box.style.color = "white";
+                                box.parentElement.classList.remove("typed");
+                            });
+                            card.classList.remove("success");
+                            document.getElementById("otpHeaderSuccess").classList.remove("active");
+                            document.getElementById("otpHeaderNormal").classList.add("active");
                             document.getElementById("otpScreen").style.display = "none";
 
                             // Perform original redirection
@@ -4771,13 +4961,32 @@
                             }
                             window.pendingLoginData = null;
                         }, 1200);
-                    }, 1000);
-                }, 500);
-            } else {
-                alert("رمز التحقق غير صحيح، يرجى المحاولة مرة أخرى.");
-                document.querySelectorAll(".otp-box").forEach(box => box.value = "");
-                document.getElementById("otp1").focus();
-            }
+                    }, 500);
+
+                } else {
+                    // Incorrect!
+                    // a) Show error header
+                    document.getElementById("otpHeaderNormal").classList.remove("active");
+                    document.getElementById("otpHeaderError").classList.add("active");
+
+                    // b) Shake card and set error color
+                    card.classList.add("error");
+
+                    // c) Wait 1200ms, then reset everything and refocus first box
+                    setTimeout(() => {
+                        card.classList.remove("error");
+                        document.getElementById("otpHeaderError").classList.remove("active");
+                        document.getElementById("otpHeaderNormal").classList.add("active");
+
+                        // Clear inputs
+                        document.querySelectorAll(".otp-box").forEach(box => {
+                            box.value = "";
+                            box.parentElement.classList.remove("typed");
+                        });
+                        document.getElementById("otp1").focus();
+                    }, 1200);
+                }
+            }, 1700);
         };
 
         window.resendOTP = function() {
@@ -4786,7 +4995,10 @@
             window.pendingLoginData.otp = newOtp;
             sendOTPEmail(window.pendingLoginData.email, newOtp);
             alert("🔐 تم إعادة إرسال رمز التحقق بنجاح! يرجى التحقق من بريدك الإلكتروني.");
-            document.querySelectorAll(".otp-box").forEach(box => box.value = "");
+            document.querySelectorAll(".otp-box").forEach(box => {
+                box.value = "";
+                box.parentElement.classList.remove("typed");
+            });
             document.getElementById("otp1").focus();
         };
 
@@ -4794,6 +5006,22 @@
             document.getElementById("otpScreen").style.display = "none";
             document.getElementById("login").style.display = "flex";
             window.pendingLoginData = null;
+            
+            // Reset headers and classes
+            const card = document.getElementById("otpCard");
+            card.classList.remove("success", "error", "loading");
+            document.getElementById("otpHeaderNormal").classList.add("active");
+            document.getElementById("otpHeaderSuccess").classList.remove("active");
+            document.getElementById("otpHeaderError").classList.remove("active");
+            
+            const inputsWrapper = document.getElementById("otpInputsWrapper");
+            inputsWrapper.classList.remove("merge");
+            inputsWrapper.style.opacity = "1";
+            document.querySelectorAll(".otp-box").forEach(box => {
+                box.value = "";
+                box.style.color = "white";
+                box.parentElement.classList.remove("typed");
+            });
         };
     </script>
 </body>
